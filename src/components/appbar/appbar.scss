@@ -1,0 +1,69 @@
+@import "@/style/colors.module";
+
+.appbar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 3.5rem;
+  z-index: 7;
+  &.expanded {
+    .appbar_alias {
+      position: absolute;
+      right: 5.375rem;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      color: white;
+      transition: right 0.5s ease-in;
+
+      @media (max-width: 425px) {
+        display: none;
+      }
+    }
+    .appbar_icon {
+      display: none;
+
+      @media (max-width: 425px) {
+        position: absolute;
+        top: 50%;
+        right: 1.375rem;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &.collapsed {
+    .appbar_alias {
+      position: absolute;
+      right: 1.375rem;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      color: $dark-color;
+      transition: right 0.5s ease-out;
+
+      @media (max-width: 425px) {
+        display: none;
+      }
+    }
+    .appbar_icon {
+      display: none;
+
+      @media (max-width: 425px) {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 1.375rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
