@@ -21,20 +21,24 @@
       color: white;
       transition: right 0.5s ease-in;
 
-      @media (max-width: 425px) {
+      @media (max-width: 768px) {
         display: none;
       }
     }
     .appbar_icon {
       display: none;
-
-      @media (max-width: 425px) {
+      @media (max-width: 768px) {
+        display: block;
         position: absolute;
         top: 50%;
         right: 1.375rem;
         transform: translateY(-50%);
         font-size: 1.5rem;
       }
+    }
+    @media (max-width: 768px) {
+      top: -3.5rem;
+      transition: top 0.5s ease-out;
     }
   }
 
@@ -49,14 +53,14 @@
       color: $dark-color;
       transition: right 0.5s ease-out;
 
-      @media (max-width: 425px) {
+      @media (max-width: 768px) {
         display: none;
       }
     }
     .appbar_icon {
       display: none;
 
-      @media (max-width: 425px) {
+      @media (max-width: 768px) {
         display: block;
         position: absolute;
         top: 50%;
