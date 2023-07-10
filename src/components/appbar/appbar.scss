@@ -5,9 +5,9 @@
   align-items: center;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 3.5rem;
   right: 0;
-  width: 100vw;
+  width: calc(100vw - 3.5rem);
   height: 3.5rem;
   z-index: 7;
   &.expanded {

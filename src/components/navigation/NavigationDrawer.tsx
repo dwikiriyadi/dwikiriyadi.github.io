@@ -30,14 +30,16 @@ const NavigationDrawer = ({
           />
         </div>
 
-        <Image
-          width={isNavExpanded ? 100 : 56}
-          height={isNavExpanded ? 100 : 56}
-          priority
-          src="./logo.svg"
-          alt="logo"
-          className="nav_logo"
-        />
+        <a href="#home">
+          <Image
+            width={isNavExpanded ? 100 : 56}
+            height={isNavExpanded ? 100 : 56}
+            priority
+            src="./logo.svg"
+            alt="logo"
+            className="nav_logo"
+          />
+        </a>
 
         <div className="nav_menu">
           {Menus.map((menu, index) => (
