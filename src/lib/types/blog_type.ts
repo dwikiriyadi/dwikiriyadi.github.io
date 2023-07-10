@@ -1,7 +1,7 @@
 type BlogType = {
     id: number,
     title: string,
+    description: string,
     date: Date,
-    category: string,
-    content : JSX.Element,
+    url: string,
 }

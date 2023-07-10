@@ -1,15 +1,17 @@
-import { Metadata } from 'next'
+import ContactSection from "@/sections/contact/ContactSection";
+import { Metadata } from "next";
 
-export const metadata : Metadata = {
-  title: 'Dwiki Riyadi | Mobile Developer',
-  description: 'Dwiki Riyadi Website',
-}
+export const metadata: Metadata = {
+  title: "Dwiki Riyadi | Mobile Developer",
+  description: "Dwiki Riyadi Website",
+};
 
 const Main = () => {
-  <main className="flex min-h-screen flex-col items-center justify-between p-24">
+  return (
+    <main>
+      <ContactSection />
+    </main>
+  );
+};
 
-  </main>
-}
-
-
-export default Main
+export default Main;
