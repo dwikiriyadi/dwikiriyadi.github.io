@@ -1,0 +1,45 @@
+@import "@/style/colors.module";
+
+.nav_toggle {
+  width: 3.5rem;
+  height: 100vh;
+  position: absolute;
+  background-color: $dark-color;
+  bottom: 0;
+  z-index: 6;
+  .nav_toggle_icon {
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+  }
+
+  &[data-expanded="true"] {
+    left: calc(100vw - 3.5rem);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .nav_logo {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    position: fixed;
+    top: 0;
+
+    &[data-expanded="true"] {
+      top: -3.5rem;
+    }
+
+    img {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}

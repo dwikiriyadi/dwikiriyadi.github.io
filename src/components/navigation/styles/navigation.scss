@@ -1,0 +1,196 @@
+@import "@/style/colors.module";
+
+.navigation {
+  width: 3.5rem;
+  height: 100vh;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &[data-expanded="true"] {
+    width: 100vw;
+  }
+
+  @media (max-width: 768px) {
+    width: 0;
+  }
+  // &.expanded {
+  //   .nav_drawer {
+  //     width: 31.25rem;
+  //     height: 100vh;
+  //     position: fixed;
+  //     transition: width 0.5s ease-in, height 0.5s ease-in;
+  //     background-color: $white-color;
+  //     z-index: 8;
+  //     @media (max-width: 768px) {
+  //       width: 100vw;
+  //     }
+  //   }
+  //   .nav_logo {
+  //     display: block;
+  //     position: absolute;
+  //     top: 0;
+  //     right: 50%;
+  //     transform: translate(50%, 19.53125vh);
+  //     transition: all 0.5s ease-in;
+  //   }
+  //   .nav_drawer_header {
+  //     display: none;
+
+  //     @media (max-width: 768px) {
+  //       display: block;
+  //       width: 100vw;
+  //       height: 3.5rem;
+  //       .nav_drawer_header_icon {
+  //         display: block;
+  //         position: absolute;
+  //         top: 1.375rem;
+  //         right: 1.375rem;
+  //         font-size: 1.5rem;
+  //       }
+  //     }
+  //   }
+  //   .nav_menu {
+  //     display: block;
+  //     position: absolute;
+  //     top: 50%;
+  //     right: 50%;
+  //     transform: translate(50%, -50%);
+  //     transition: all 0.5s ease-in;
+  //     .nav_menu_item {
+  //       text-align: center;
+  //       display: block;
+  //       font-size: 1.5rem;
+  //       font-style: normal;
+  //       font-weight: 600;
+  //       line-height: normal;
+  //       margin: 2rem auto;
+  //       text-transform: uppercase;
+  //       color: $dark-color;
+  //     }
+  //     .nav_menu_item:after {
+  //       transition: all ease-in-out 0.2s;
+  //       background: none repeat scroll 0 0 $primary-color;
+  //       content: "";
+  //       display: block;
+  //       margin-top: 0.390625vh;
+  //       height: 0.390625vh;
+  //       width: 0;
+  //     }
+  //     .nav_menu_item:hover:after {
+  //       width: 100%;
+  //     }
+  //   }
+  //   .nav_footer {
+  //     display: flex;
+  //     flex-direction: row;
+  //     justify-content: center;
+  //     align-items: center;
+  //     margin: auto;
+  //     position: absolute;
+  //     bottom: 3rem;
+  //     width: 100%;
+  //     transition: display 0.5s ease-in;
+  //     transition-delay: 1s;
+  //     .nav_footer_item {
+  //       text-align: center;
+  //       display: block;
+  //       font-size: 1.56256rem;
+  //       font-style: normal;
+  //       font-weight: 600;
+  //       line-height: normal;
+  //       flex-shrink: 0;
+  //       margin: 0 1.5rem;
+  //       color: $dark-color;
+  //     }
+  //     .nav_footer_item:hover {
+  //       color: $primary-color;
+  //       transition: color 0.2s ease-in;
+  //     }
+  //   }
+  // }
+
+  &.collapsed {
+    // .nav_drawer {
+    //   width: 3.5rem;
+    //   height: 3.5rem;
+    //   position: fixed;
+    //   transition: width 0.5s ease-out, height 0.5s ease-out;
+    //   background-color: $white-color;
+    //   z-index: 8;
+    //   @media (max-width: 768px) {
+    //     width: 0;
+    //   }
+    // }
+    // .nav_logo {
+    //   display: block;
+    //   margin: auto;
+    //   position: absolute;
+    //   top: 50%;
+    //   right: 50%;
+    //   width: 1.75rem;
+    //   height: 1.75rem;
+    //   transition: all 0.5s ease-out;
+    // }
+    .nav_drawer_header {
+      display: none;
+    }
+    .nav_menu {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 50%;
+      transform: translate(-3.88888889vw * 2, 5rem);
+      transition: all 0.5s ease-out;
+      .nav_menu_item {
+        text-align: center;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 1rem auto;
+        text-transform: uppercase;
+        color: $dark-color;
+      }
+      .nav_menu_item:after {
+        transition: all ease-in-out 0.2s;
+        background: none repeat scroll 0 0 $primary-color;
+        content: "";
+        display: block;
+        margin-top: 0.390625vh;
+        height: 0.390625vh;
+        width: 0;
+      }
+      .nav_menu_item:hover:after {
+        width: 100%;
+      }
+    }
+    .nav_footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      position: absolute;
+      bottom: 3.5rem;
+      width: 100%;
+      transition: bottom 0.5s ease-in;
+      .nav_footer_item {
+        text-align: center;
+        display: block;
+        font-size: 1.56256rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        flex-shrink: 0;
+        margin: 0 1.5rem;
+        color: $dark-color;
+      }
+      .nav_footer_item:hover {
+        color: $primary-color;
+        transition: color 0.2s ease-in;
+      }
+    }
+  }
+}

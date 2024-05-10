@@ -1,85 +1,48 @@
 "use client";
-import "./navigation.scss";
+import "./styles/navigation_drawer.scss";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Menus from "@/lib/data/menus";
 import Socials from "@/lib/data/socials";
-
-type INavigationDrawerProps = {
-  isNavExpanded: boolean;
-  onNavToggleClick: () => void;
-};
+import INavigationProps from "./INavigationProps";
 
 const NavigationDrawer = ({
-  isNavExpanded,
-  onNavToggleClick,
-}: INavigationDrawerProps) => {
+  isExpanded,
+  onToggleNavigation,
+}: INavigationProps) => {
   return (
-    <aside
-      className={isNavExpanded ? "navigation expanded" : "navigation collapsed"}
-    >
-      {/*this is drawer*/}
-      <div className="nav_drawer">
-        <div className="nav_drawer_header">
-          <FontAwesomeIcon
-            icon={faClose}
-            color="#212121"
-            className="nav_drawer_header_icon"
-            onClick={() => onNavToggleClick()}
-          />
-        </div>
-
-        <a href="#home">
-          <Image
-            width={isNavExpanded ? 100 : 56}
-            height={isNavExpanded ? 100 : 56}
-            priority
-            src="./logo.svg"
-            alt="logo"
-            className="nav_logo"
-          />
-        </a>
-
-        <div className="nav_menu">
-          {Menus.map((menu, index) => (
-            <a
-              href={menu.url}
-              className="nav_menu_item"
-              key={index}
-              onClick={() => onNavToggleClick()}
-            >
-              {menu.name}
-            </a>
-          ))}
-        </div>
-
-        <div className="nav_footer">
-          {Socials.map((social, index) => (
-            <a
-              href={social.url}
-              className="nav_footer_item"
-              key={index}
-              target="_blank"
-            >
-              <FontAwesomeIcon icon={social.icon} />
-            </a>
-          ))}
-        </div>
+    <motion.div className="nav_drawer" layout data-expanded={isExpanded}>
+      <motion.a href="#home" className="nav_logo">
+        <motion.img src="./logo.svg" alt="logo"/>
+      </motion.a>
+      
+      <div className="nav_menu">
+        {Menus.map((menu, index) => (
+          <a
+            href={menu.url}
+            className="nav_menu_item"
+            key={index}
+            onClick={() => onToggleNavigation?.()}
+          >
+            {menu.name}
+          </a>
+        ))}
       </div>
 
-      {/*this is toggle button*/}
-      <div className="nav_toggle" onClick={() => onNavToggleClick()}>
-        <FontAwesomeIcon
-          icon={faChevronRight}
-          color="#FFF"
-          className="nav_toggle_icon"
-        />
+      <div className="nav_footer">
+        {Socials.map((social, index) => (
+          <a
+            href={social.url}
+            className="nav_footer_item"
+            key={index}
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={social.icon} />
+          </a>
+        ))}
       </div>
-
-      {/*this is overlay*/}
-      <div className="nav_overlay" />
-    </aside>
+    </motion.div>
   );
 };
 

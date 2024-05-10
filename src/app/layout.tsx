@@ -3,7 +3,7 @@
 import "./globals.scss";
 import { Open_Sans } from "next/font/google";
 import { useCallback, useState } from "react";
-import NavigationDrawer from "@/components/navigation/NavigationDrawer";
+import Navigation from "@/components/navigation/Navigation";
 import AppBar from "@/components/appbar/AppBar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -27,9 +27,9 @@ const RootLayout = ({ children }: IRootLayoutProps) => {
       <body className={openSans.className}>
         <AppBar isNavExpanded={isNavExpanded} onNavToggleClick={toggleNav} />
 
-        <NavigationDrawer
-          isNavExpanded={isNavExpanded}
-          onNavToggleClick={toggleNav}
+        <Navigation
+          isExpanded={isNavExpanded}
+          onToggleNavigation={toggleNav}
         />
 
         {children}
