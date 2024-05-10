@@ -10,7 +10,7 @@ import INavigationProps from "./INavigationProps";
 const slideIn = {
   duration: 0.5,
   type: "tween",
-  ease: "easeInOut"
+  ease: "easeInOut",
 };
 
 const NavigationDrawer = ({
@@ -24,7 +24,11 @@ const NavigationDrawer = ({
       data-expanded={isExpanded}
       transition={slideIn}
     >
-      <motion.a href="#home" className="nav_logo">
+      <motion.a
+        href="#home"
+        className="nav_logo"
+        onClick={() => onToggleNavigation?.()}
+      >
         <motion.img src="./logo.svg" alt="logo" />
       </motion.a>
 

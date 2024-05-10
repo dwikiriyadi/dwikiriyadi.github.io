@@ -24,7 +24,6 @@ const NavigationToggle = ({
       className="nav_toggle"
       layout
       transition={spring}
-      onClick={() => onToggleNavigation?.()}
     >
       <motion.a href="#home" className="nav_logo" data-expanded={isExpanded}>
         <motion.img src="./logo.svg" alt="logo"/>
@@ -37,6 +36,7 @@ const NavigationToggle = ({
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        onClick={() => onToggleNavigation?.()}
       >
         <motion.path
           variants={{
