@@ -1,22 +1,33 @@
 "use client";
 import "./styles/navigation_drawer.scss";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Menus from "@/lib/data/menus";
 import Socials from "@/lib/data/socials";
 import INavigationProps from "./INavigationProps";
+
+const slideIn = {
+  duration: 0.5,
+  type: "tween",
+  ease: "easeInOut"
+};
 
 const NavigationDrawer = ({
   isExpanded,
   onToggleNavigation,
 }: INavigationProps) => {
   return (
-    <motion.div className="nav_drawer" layout data-expanded={isExpanded}>
+    <motion.div
+      className="nav_drawer"
+      layout
+      data-expanded={isExpanded}
+      transition={slideIn}
+    >
       <motion.a href="#home" className="nav_logo">
-        <motion.img src="./logo.svg" alt="logo"/>
+        <motion.img src="./logo.svg" alt="logo" />
       </motion.a>
-      
+
       <div className="nav_menu">
         {Menus.map((menu, index) => (
           <a
