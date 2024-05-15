@@ -8,10 +8,10 @@ const variants = {
   collapsed: { right: 0 },
 };
 
-const spring = {
-  type: "spring",
-  stiffness: 700,
-  damping: 30,
+const slideIn = {
+  duration: 0.5,
+  type: "tween",
+  ease: "easeInOut",
 };
 
 const NavigationToggle = ({
@@ -23,7 +23,7 @@ const NavigationToggle = ({
       data-expanded={isExpanded}
       className="nav_toggle"
       layout
-      transition={spring}
+      transition={slideIn}
     >
       <motion.a href="#home" className="nav_logo" data-expanded={isExpanded}>
         <motion.img src="./logo.svg" alt="logo"/>

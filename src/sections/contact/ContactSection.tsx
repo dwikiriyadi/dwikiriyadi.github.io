@@ -3,6 +3,7 @@ import Socials from "@/lib/data/socials";
 import "./contact.scss";
 import { useRive } from "@rive-app/react-canvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 
 const ContactSection = () => {
   const { RiveComponent } = useRive({
@@ -17,51 +18,48 @@ const ContactSection = () => {
         <span className="contact_header_title">Contact Me</span>
       </header>
 
-      <div className="contact_main">
-        <div className="contact_main_divider"/>
-
-        <div className="contact_main_title">
-          <span>Interest in collaborating ?</span>
-        </div>
-
-        <div className="contact_main_body">
-          <span>
-            I&apos;m always open to discussing product design and mobile
-            development or partnership oppurtunities
-          </span>
-        </div>
-      </div>
-
-      <div className="contact_container">
-        <a
-          href="mailto:wiki.riyadi@gmail.com"
-          className="contact_email"
-          target="_blank"
-        >
-          Start a conversation
-        </a>
-
-        <div className="contact_social">
-          {Socials.map((social, index) => (
-            <a
-              href={social.url}
-              className="contact_social_item"
-              key={index}
-              target="_blank"
-            >
-              <FontAwesomeIcon icon={social.icon} />
-            </a>
-          ))}
-        </div>
-      </div>
-
       <div className="rive_container">
         <RiveComponent />
       </div>
 
-      <footer className="contact_footer">
-        <span>Copyright © {new Date().getFullYear()} | Dwiki Riyadi</span>
-      </footer>
+      <main className="contact_main">
+        <span className="contact_main_title">Interest in collaborating ?</span>
+        <span className="contact_main_description">
+          I&apos;m always open to discussing product design and mobile
+          development or partnership opportunities
+        </span>
+        <div className="contact_main_buttons">
+          <a
+            href="mailto:wiki.riyadi@gmail.com"
+            className="button filled"
+            target="_blank"
+          >
+            Start a conversation
+          </a>
+
+          <span className="contact_main_socials">
+            {Socials.map((social, index) => (
+              <a
+                href={social.url}
+                className="button icon"
+                key={index}
+                target="_blank"
+                style={{ color: "white" }}
+              >
+                <FontAwesomeIcon icon={social.icon} size="xl" />
+              </a>
+            ))}
+          </span>
+        </div>
+      </main>
+
+      <Image
+        src="dot_3_2.svg"
+        alt="dot_3_2"
+        width="330"
+        height="220"
+        className="contact_dots"
+      />
     </section>
   );
 };
