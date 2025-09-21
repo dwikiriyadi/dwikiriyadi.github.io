@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Tab from "@/components/Tab/Tab";
-import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
+import type { PortfolioItem } from "@/types/portfolio";
 import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from "@/data/portfolio";
 
 function Carousel({ data }: { data: PortfolioItem[] }) {

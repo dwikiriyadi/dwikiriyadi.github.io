@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PORTFOLIO_ITEMS } from "@/data/portfolio";
 import type { PortfolioItem } from "@/types/portfolio";

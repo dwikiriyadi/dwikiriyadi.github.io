@@ -31,10 +31,10 @@ export default function Contact() {
     <section id="contact" className="md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">Contact</h2>
-        <p className="text-center text-neutral-400 mt-1">Let's Connect & Collaborate</p>
+        <p className="text-center text-neutral-400 mt-1">Let&apos;s Connect & Collaborate</p>
         <p className="text-neutral-300 max-w-2xl mx-auto text-center mt-4">
           <span className="text-[var(--color-primary)]">Interest in collaborating ? </span>
-          I'm open to collaboration, freelance projects, and speaking opportunities. Reach out via the form or connect on social media.
+          I&apos;m open to collaboration, freelance projects, and speaking opportunities. Reach out via the form or connect on social media.
         </p>
 
         {/* Contact form */}

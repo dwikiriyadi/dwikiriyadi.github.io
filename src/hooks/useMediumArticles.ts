@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import type { ArticleItem } from "@/types/article";
+import type { MediumRssItem, MediumRssResponse } from "@/types/medium";
 
 // Simple client-side fetcher for Medium RSS via rss2json
 // Replace MEDIUM_USERNAME with your Medium handle
@@ -20,7 +21,7 @@ interface UseMediumArticlesResult {
 }
 
 export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
-  const [raw, setRaw] = useState<any[]>([]);
+  const [raw, setRaw] = useState<MediumRssItem[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | undefined>();
@@ -41,10 +42,10 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
           `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`,
         );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const data: MediumRssResponse = await res.json();
         setRaw(Array.isArray(data.items) ? data.items : []);
-      } catch (e: any) {
-        setError(e?.message || "Failed to load articles");
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Failed to load articles");
       } finally {
         setLoading(false);
       }

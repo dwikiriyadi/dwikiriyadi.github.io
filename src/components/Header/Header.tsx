@@ -71,7 +71,7 @@ export default function Header() {
         window.removeEventListener("scroll", onScroll);
       }
     };
-    window.addEventListener("scroll", onScroll, { passive: true } as any);
+    window.addEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -82,7 +82,6 @@ export default function Header() {
       .filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
 
-    let ticking = false;
     const onIntersect: IntersectionObserverCallback = (entries) => {
       // Determine which section is the most visible
       const visible = entries
@@ -97,7 +96,6 @@ export default function Header() {
           history.replaceState(null, "", newHash);
         } catch {}
       }
-      ticking = false;
     };
 
     const observer = new IntersectionObserver(onIntersect, {

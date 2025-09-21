@@ -11,7 +11,7 @@ export default function BackToTop() {
       setVisible(y > window.innerHeight * 0.6);
     };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true } as any);
+    window.addEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
