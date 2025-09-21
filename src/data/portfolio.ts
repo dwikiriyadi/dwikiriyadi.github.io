@@ -14,6 +14,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       "portofolio/json_ui_flutter/image-1.png",
       "portofolio/json_ui_flutter/image-2.png",
       "portofolio/json_ui_flutter/image-3.png",
+      "portofolio/json_ui_flutter/image-4.png",
     ],
     backgroundImages: ["portofolio/json_ui_flutter/bg.png"],
     company: "PT. KB Finansia Multi Finance",
