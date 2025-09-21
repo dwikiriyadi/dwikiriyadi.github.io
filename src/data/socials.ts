@@ -18,8 +18,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
     href: "https://www.linkedin.com/in/dwikiriyadi",
     Icon: LinkedinLogo,
   },
-  { name: "Medium", href: "https://medium.com/@dwikiriyadi", Icon: MediumLogo },
-  { name: "Instagram", href: "https://instagram.com", Icon: InstagramLogo },
-  { name: "YouTube", href: "https://youtube.com", Icon: YoutubeLogo },
+  { name: "Medium", href: "https://medium.com/@wikinotes", Icon: MediumLogo },
+  { name: "Instagram", href: "https://www.instagram.com/dwkryd/", Icon: InstagramLogo },
+  { name: "YouTube", href: "https://www.youtube.com/@dwkryd", Icon: YoutubeLogo },
   { name: "GitHub", href: "https://github.com/dwikiriyadi", Icon: GithubLogo },
 ];
