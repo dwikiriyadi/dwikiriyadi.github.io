@@ -16,7 +16,7 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
         <Link
           key={it.id}
           href={`/portfolio/${it.id}`}
-          className="group min-w-[280px] sm:min-w-[340px] lg:min-w-[380px] snap-start border border-neutral-800 rounded-lg overflow-hidden bg-neutral-950 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] hover:border-neutral-600 hover:bg-neutral-900 transition-colors"
+          className="group w-[280px] sm:w-[340px] lg:w-[380px] flex-none snap-start border border-neutral-800 rounded-lg overflow-hidden bg-neutral-950 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] hover:border-neutral-600 hover:bg-neutral-900 transition-colors"
         >
           <div className="aspect-[16/10] relative bg-neutral-900">
             <Image src={it.image?.startsWith("/") ? it.image : `/${it.image}`} alt={it.title} fill sizes="(max-width:768px) 90vw, 380px" className="object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
