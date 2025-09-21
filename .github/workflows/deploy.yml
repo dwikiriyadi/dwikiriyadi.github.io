@@ -19,18 +19,14 @@ jobs:
           node-version: '20'
 
       # 3. Install dependencies
-      - run: |
-          cd site
-          npm install
+      - run: npm ci
 
       # 4. Build static site (Next.js static export via next.config.js)
-      - run: |
-          cd site
-          npm run build
+      - run: npm run build
 
       # 5. Deploy to GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/out
+          publish_dir: ./out
