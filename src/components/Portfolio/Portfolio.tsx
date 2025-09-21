@@ -89,7 +89,7 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
 export default function Portfolio() {
   const categories: ("All" | PortfolioCategory)[] = ["All", "Android", "Flutter", "UI Design"];
   return (
-    <section id="portfolio" className="min-h-screen flex items-center py-16 scroll-mt-16 snap-start snap-always">
+    <section id="portfolio" className="h-screen flex items-center py-16 scroll-mt-16 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">Portfolio</h2>
         <Tab

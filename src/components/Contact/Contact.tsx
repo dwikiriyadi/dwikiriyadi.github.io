@@ -35,7 +35,7 @@ export default function Contact() {
     (e.target as HTMLFormElement).reset();
   }
   return (
-    <section id="contact" className="min-h-screen flex items-center py-16 scroll-mt-16 snap-start snap-always">
+    <section id="contact" className="h-screen flex items-center py-16 scroll-mt-16 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">Contact</h2>
         <p className="text-neutral-300 max-w-2xl mx-auto text-center">I'm open to collaboration, freelance projects, and speaking opportunities. Reach out via the form or connect on social media.</p>

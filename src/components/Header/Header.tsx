@@ -196,7 +196,7 @@ export default function Header() {
                       {it.num}
                     </span>
                     {/* Divider dash only when expanded */}
-                    {!desktopHidden && <span className="text-[#9A9A9A]">-</span>}
+                    {!desktopHidden && <span className={active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white"}>-</span>}
                     {/* Label hidden in rail */}
                     {!desktopHidden && (
                       <span

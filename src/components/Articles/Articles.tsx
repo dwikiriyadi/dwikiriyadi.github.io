@@ -5,7 +5,7 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 export default function Articles() {
   const { items, page, hasPrev, hasNext, prev, next, loading, error } = useMediumArticles();
   return (
-    <section id="articles" className="min-h-screen flex flex-col justify-center py-16 scroll-mt-16 relative snap-start snap-always">
+    <section id="articles" className="h-screen flex flex-col justify-center py-16 scroll-mt-16 relative snap-start snap-always">
       <div className="container">
         <h2 className="section-title text-center">Articles</h2>
         {loading && <p className="text-neutral-400 text-center">Loading articles…</p>}
