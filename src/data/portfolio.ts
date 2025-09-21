@@ -30,7 +30,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
         icon: "medium",
       },
     ],
-    category: "UI Design",
+    category: "Library",
   },
   {
     id: "2",
@@ -131,9 +131,9 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       "portofolio/rsud_queue/image-5.png",
     ],
     backgroundImages: ["portofolio/rsud_queue/bg.png"],
-    company: "Logee",
+    company: "RSUD dr.Abdul Azis Singkawang",
     links: [],
-    category: "Android",
+    category: "Flutter",
   },
   {
     id: "7",
