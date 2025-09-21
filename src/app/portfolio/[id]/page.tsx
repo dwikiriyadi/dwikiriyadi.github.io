@@ -14,7 +14,14 @@ function getItem(id: string): { item: PortfolioItem; index: number } | null {
   return { item: PORTFOLIO_ITEMS[index], index };
 }
 
-export default function Page({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default function Page({ params }: PageProps) {
   const found = getItem(params.id);
   if (!found) return notFound();
   const { item, index } = found;
