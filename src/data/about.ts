@@ -16,13 +16,92 @@ export interface ExperienceItem {
 }
 
 export const EXPERIENCES: ExperienceItem[] = [
-  { company: "CV. Borneo Algorithm Technology", location: "Pontianak", employment: "Self-employed", role: "Software Engineer", period: "Maret 2024 - Present", details: "" },
-  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Freelance", role: "Flutter Developer", period: "Maret 2023 - Present", details: "" },
-  { company: "PT. KB Finansia Multi Finance", location: "Jakarta", employment: "Full-time", role: "Senior Mobile Engineer", period: "August 2024 - August 2025", details: "" },
-  { company: "LOGEE", location: "Jakarta", employment: "Full-time", role: "Android Developer", period: "Juny 2020 - December 2023", details: "" },
-  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Freelance", role: "Flutter Developer", period: "May 2020 - December 2021", details: "" },
-  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Full-time", role: "Mobile Developer", period: "April 2019 - May 2020", details: "" },
-  { company: "IdeKite Indonesia", location: "Pontianak", employment: "Full-time", role: "Full Stack Developer", period: "Februari 2018 - February 2019", details: "" },
+  {
+    company: "CV. Borneo Algorithm Technology",
+    location: "Pontianak",
+    employment: "Self-employed",
+    role: "Software Engineer",
+    period: "Maret 2024 - Present",
+    details: `
+- Building internal tools and open-source libraries to speed up mobile development.
+- Working across frontend, mobile and UI design, including logo/branding when needed.
+- Current focus includes planning open-source libraries to be used in production and shared with the developer community.
+`,
+  },
+  {
+    company: "Amigo Group Indonesia",
+    location: "Yogyakarta",
+    employment: "Freelance",
+    role: "Flutter Developer",
+    period: "Maret 2023 - Present",
+    details: `
+- Supporting existing apps and exploring new Flutter capabilities.
+- Conducting R&D to evaluate tools and approaches for long-term maintainability.
+- Providing ongoing freelance support for projects.
+`,
+  },
+  {
+    company: "PT. KB Finansia Multi Finance",
+    location: "Jakarta",
+    employment: "Full-time",
+    role: "Senior Mobile Engineer",
+    period: "August 2024 - August 2025",
+    details: `
+- Led mobile development using Kotlin Multiplatform and Flutter.
+- Improved existing architecture for scalability and testability.
+- Created internal tools and workflows to speed up development.
+- Mentored developers and introduced better practices.
+`,
+  },
+  {
+    company: "LOGEE",
+    location: "Jakarta",
+    employment: "Full-time",
+    role: "Android Developer",
+    period: "Juny 2020 - December 2023",
+    details: `
+- Developed Android apps with MVVM and Clean Architecture.
+- Applied SOLID principles for scalable codebases.
+- Grew under mentorship, shifting from execution to architectural thinking.
+`,
+  },
+  {
+    company: "Amigo Group Indonesia",
+    location: "Yogyakarta",
+    employment: "Freelance",
+    role: "Flutter Developer",
+    period: "May 2020 - December 2021",
+    details: `
+- Delivered mobile apps using Flutter.
+- Handled client requirements directly and iterated fast.
+- Gained experience in shipping apps independently.
+`,
+  },
+  {
+    company: "Amigo Group Indonesia",
+    location: "Yogyakarta",
+    employment: "Full-time",
+    role: "Mobile Developer",
+    period: "April 2019 - May 2020",
+    details: `
+- Transitioned from full stack into mobile-focused work.
+- Built cross-platform apps in React Native and Flutter.
+- Collaborated with designers and backend teams to deliver features quickly.
+`,
+  },
+  {
+    company: "IdeKite Indonesia",
+    location: "Pontianak",
+    employment: "Full-time",
+    role: "Full Stack Developer",
+    period: "Februari 2018 - February 2019",
+    details: `
+- Designed app interfaces using Adobe XD.
+- Built web and mobile apps with modern frameworks.
+- Handled both frontend and backend responsibilities.
+- Managed small end-to-end projects from design to delivery.
+`,
+  },
 ];
 
 export interface SkillItem {
@@ -38,7 +117,7 @@ export const SKILLS: SkillItem[] = [
     key: "mobile",
     title: "Mobile Development",
     desc: "Designing and building robust, scalable mobile applications with a focus on performance, offline-first experiences, and delightful UX. Comfortable leading end-to-end delivery from architecture to Play Store/App Store releases.",
-    tags: ["Kotlin", "Coroutines", "Compose", "Android SDK", "Flutter", "Dart", "Riverpod/Bloc", "Firebase", "WorkManager", "Room/SQLDelight"],
+    tags: ["Kotlin", "Coroutines", "Compose", "Android SDK", "Flutter", "Dart", "Riverpod/Bloc", "Firebase", "Room/SQLDelight"],
     Icon: DeviceMobile,
   },
   {
@@ -52,7 +131,7 @@ export const SKILLS: SkillItem[] = [
     key: "tools",
     title: "Tools & Technologies",
     desc: "Leveraging modern toolchains to streamline development, improve quality, and speed up delivery across platforms and teams.",
-    tags: ["Git/GitHub", "CI/CD", "Fastlane", "Gradle", "Kotlin DSL", "Lint/Detekt", "Figma"],
+    tags: ["Git/GitHub", "CI/CD", "Gradle", "Kotlin DSL", "Lint/Detekt", "Figma"],
     Icon: Wrench,
   },
   {

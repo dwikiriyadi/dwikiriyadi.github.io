@@ -53,3 +53,19 @@ code, pre { font-family: var(--font-fira-code), ui-monospace, SFMono-Regular, Me
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Utility to clamp text to 3 lines without Tailwind line-clamp plugin */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Utility to clamp text to 6 lines without Tailwind line-clamp plugin */
+.clamp-6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,53 +1,32 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import Tab from "@/components/Tab/Tab";
 import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
 import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from "@/data/portfolio";
 
 function Carousel({ data }: { data: PortfolioItem[] }) {
-  // Drag to scroll horizontally
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
-  function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    const el = e.currentTarget;
-    isDown = true;
-    startX = e.clientX;
-    scrollLeft = el.scrollLeft;
-    el.setPointerCapture(e.pointerId);
-  }
-  function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
-    if (!isDown) return;
-    const el = e.currentTarget;
-    const walk = (e.clientX - startX) * -1; // drag right-to-left scrolls right
-    el.scrollLeft = scrollLeft + walk;
-  }
-  function onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
-    isDown = false;
-    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
-  }
+  // Use native scrolling for drag on touch devices/trackpads to ensure links remain clickable
   return (
     <div
-      className="overflow-x-auto snap-x snap-mandatory flex gap-4 pb-2 -mx-4 px-4 cursor-grab select-none"
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
+      className="overflow-x-auto snap-x snap-mandatory flex gap-4 pb-2 -mx-4 px-4"
       aria-label="Portfolio items carousel"
     >
       {data.map((it) => (
-        <article key={it.id} className="min-w-[280px] sm:min-w-[340px] lg:min-w-[380px] snap-start border border-neutral-800 rounded-lg overflow-hidden bg-neutral-950">
+        <Link
+          key={it.id}
+          href={`/portfolio/${it.id}`}
+          className="group min-w-[280px] sm:min-w-[340px] lg:min-w-[380px] snap-start border border-neutral-800 rounded-lg overflow-hidden bg-neutral-950 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] hover:border-neutral-600 hover:bg-neutral-900 transition-colors"
+        >
           <div className="aspect-[16/10] relative bg-neutral-900">
-            <Image src={it.image} alt={it.title} fill sizes="(max-width:768px) 90vw, 380px" className="object-contain" />
+            <Image src={it.image?.startsWith("/") ? it.image : `/${it.image}`} alt={it.title} fill sizes="(max-width:768px) 90vw, 380px" className="object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
           </div>
           <div className="p-4">
             <h3 className="font-semibold text-white">{it.title}</h3>
-            <p className="text-sm text-neutral-400 mt-1">{it.description}</p>
-            {it.link && (
-              <a href={it.link} target="_blank" className="inline-block mt-3 text-sm font-medium text-[var(--color-primary)] hover:underline">View project →</a>
-            )}
+            <p className="text-sm text-neutral-400 mt-1 clamp-6">{it.description}</p>
+            <span className="inline-block mt-3 text-sm font-medium text-[var(--color-primary)] group-hover:underline">View details →</span>
           </div>
-        </article>
+        </Link>
       ))}
     </div>
   );
