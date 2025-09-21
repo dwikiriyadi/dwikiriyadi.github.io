@@ -1,0 +1,237 @@
+"use client";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import { SidebarSimple } from "@phosphor-icons/react";
+
+const navItems = [
+  { href: "#about", label: "About" },
+  { href: "#portfolio", label: "Portfolio" },
+  { href: "#articles", label: "Articles" },
+  { href: "#contact", label: "Contact" },
+];
+
+const EXPANDED_WIDTH = "16rem"; // 256px
+const RAIL_WIDTH = "4.5rem"; // 72px
+
+export default function Header() {
+  // Drawer state
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [desktopHidden, setDesktopHidden] = useState(true); // start hidden (rail on desktop)
+  const [hash, setHash] = useState<string>(typeof window !== "undefined" ? window.location.hash || "#about" : "#about");
+
+  // Sync hash for active nav state and close mobile on navigation
+  useEffect(() => {
+    const onHash = () => {
+      setHash(window.location.hash || "#about");
+      setMobileOpen(false);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  // Compute numbered labels
+  const numbered = useMemo(
+    () =>
+      navItems.map((it, idx) => ({
+        ...it,
+        num: String(idx).padStart(2, "0"),
+      })),
+    []
+  );
+
+  // Update CSS var for content left padding to create sliding effect
+  useEffect(() => {
+    const setVar = () => {
+      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+      let width = "0";
+      if (isDesktop) {
+        width = desktopHidden ? RAIL_WIDTH : EXPANDED_WIDTH;
+      } else {
+        width = mobileOpen ? EXPANDED_WIDTH : "0";
+      }
+      document.documentElement.style.setProperty("--sidebar-width", width);
+    };
+    setVar();
+    const onResize = () => setVar();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [desktopHidden, mobileOpen]);
+
+  // Auto-show once on first scroll beyond the first viewport
+  useEffect(() => {
+    const key = "autoDrawerShown";
+    const already = typeof window !== "undefined" && sessionStorage.getItem(key) === "1";
+    if (already) return;
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > window.innerHeight * 0.6) {
+        // Show only once
+        sessionStorage.setItem(key, "1");
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          setDesktopHidden(false);
+        } else {
+          setMobileOpen(true);
+          // Auto-close after a short delay to avoid blocking content
+          setTimeout(() => setMobileOpen(false), 2500);
+        }
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true } as any);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Observe sections for scroll spy
+  useEffect(() => {
+    const sectionIds = ["about", "portfolio", "articles", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    if (!sections.length) return;
+
+    let ticking = false;
+    const onIntersect: IntersectionObserverCallback = (entries) => {
+      // Determine which section is the most visible
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
+      if (!visible.length) return;
+      const top = visible[0].target as HTMLElement;
+      const newHash = `#${top.id}`;
+      if (newHash !== hash) {
+        setHash(newHash);
+        try {
+          history.replaceState(null, "", newHash);
+        } catch {}
+      }
+      ticking = false;
+    };
+
+    const observer = new IntersectionObserver(onIntersect, {
+      root: null,
+      threshold: [0.25, 0.5, 0.6, 0.75, 0.9],
+      rootMargin: "-20% 0px -35% 0px",
+    });
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [hash]);
+
+  // Mobile open button (Phosphor Sidebar icon)
+  return (
+    <>
+      <button
+        aria-label="Open menu"
+        className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-800"
+        onClick={() => setMobileOpen(true)}
+      >
+        <SidebarSimple size={22} weight="regular" />
+      </button>
+
+      {/* Drawer / Sidebar */}
+      <aside
+        className={
+          [
+            "fixed top-0 left-0 z-40 h-screen bg-[var(--color-secondary)] text-white border-r border-neutral-800",
+            // Mobile slide in/out
+            mobileOpen ? "translate-x-0 w-64" : "-translate-x-full w-64",
+            // Desktop pinned; we avoid translate to keep it visible as rail
+            "md:translate-x-0 md:w-auto",
+          ].join(" ")
+        }
+        style={{ width: undefined }}
+        aria-label="Site navigation drawer"
+      >
+        {/* Wrapper that adapts width on desktop via CSS var */}
+        <div className="h-full flex flex-col" style={{ width: "var(--sidebar-width)" }}>
+          {/* Header inside drawer */}
+          <div className="px-3 pt-5 pb-4 border-b border-neutral-800 flex items-start justify-between gap-2">
+            {/* Name and role (hide in rail) */}
+            <div className={"min-w-0 " + (desktopHidden ? "md:hidden" : "")}>
+              <div className="text-lg font-semibold">Dwiki Riyadi</div>
+              <div className="text-sm text-neutral-400">Mobile Developer</div>
+            </div>
+            {/* Toggle button on the right using Phosphor icon */}
+            <button
+              onClick={() => setDesktopHidden((v) => !v)}
+              className="hidden md:inline-flex shrink-0 p-2 rounded border border-neutral-700 text-neutral-200 hover:bg-neutral-900"
+              aria-pressed={desktopHidden}
+              aria-label={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
+              title={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
+            >
+              <SidebarSimple size={18} />
+            </button>
+            {/* Mobile close */}
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="md:hidden absolute top-3 right-3 p-2 rounded border border-neutral-700 text-neutral-200"
+              aria-label="Close menu"
+              title="Close"
+            >
+              <SidebarSimple size={18} />
+            </button>
+          </div>
+
+          {/* Nav items positioned toward bottom start */}
+          <div className="flex-1 flex flex-col">
+            {/* When expanded: full nav with labels; when rail: only numbers */}
+            <nav className="mt-auto px-2 pb-3 space-y-1 font-mono">
+              {numbered.map((it) => {
+                const active = hash === it.href;
+                return (
+                  <a
+                    key={it.href}
+                    href={it.href}
+                    className={[
+                      "group flex items-center gap-2 rounded px-3 py-2 transition-colors",
+                      desktopHidden ? "md:justify-center" : "",
+                    ].join(" ")}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span
+                      className={[
+                        "text-[11px] tracking-widest",
+                        active ? "text-[var(--color-primary)]" : "text-[#9A9A9A]",
+                      ].join(" ")}
+                    >
+                      {it.num}
+                    </span>
+                    {/* Divider dash only when expanded */}
+                    {!desktopHidden && <span className="text-[#9A9A9A]">-</span>}
+                    {/* Label hidden in rail */}
+                    {!desktopHidden && (
+                      <span
+                        className={active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white"}
+                      >
+                        {it.label}
+                      </span>
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Footer with logo and GitHub link */}
+            <div className={desktopHidden ? "mt-2 px-3 py-4 border-t border-neutral-800 flex items-center justify-center gap-3" : "mt-2 px-3 py-4 border-t border-neutral-800 flex items-center gap-3"}>
+              <div className="flex items-center justify-center">
+                {/* Show logo; in rail, center it; in expanded, align start */}
+                <Image src="/logo_rounded.svg" alt="Logo" width={36} height={36} />
+              </div>
+              {/* GitHub link shown only when expanded per layout constraints */}
+              {!desktopHidden && (
+                <a
+                  href="https://github.com/dwikiriyadi"
+                  target="_blank"
+                  className="inline-flex items-center gap-2 text-[#9A9A9A]"
+                  aria-label="GitHub"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+                  <span className="text-sm font-medium">GitHub</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+}

@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dwiki Riyadi — Personal Portfolio
 
-## Getting Started
+A minimalist, responsive single-page portfolio built with Next.js (App Router), React, and TailwindCSS.
 
-First, run the development server:
+Tech highlights:
+- Next.js 15 (App Router) + React 19
+- TailwindCSS v4
+- Fonts: Outfit (UI) and Fira Code (code)
+- SPA-style navigation with smooth scrolling
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Quick Start
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Run the dev server
 
-## Learn More
+   npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+3. Open the site
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration
 
-## Deploy on Vercel
+- Medium articles: set your Medium handle via env var (optional)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  echo "NEXT_PUBLIC_MEDIUM_USERNAME=your_handle" >> .env.local
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Assets
+  - Logo: public/logo.svg (provided). You can replace with your own logo file and update src/components/Header/Header.tsx if needed.
+  - Portfolio images live in public/images.
+
+## Project Structure
+
+- src/app
+  - layout.tsx — global layout, fonts, and styles
+  - page.tsx — single-page composition (Hero, About, Portfolio, Articles, Contact)
+- src/components
+  - Header, About, Portfolio, Articles, Contact, Tab
+- src/hooks
+  - useMediumArticles.ts — fetch Medium RSS via rss2json, with client-side pagination
+- src/types
+  - article.d.ts, portfolio.d.ts
+
+## Design & UX
+
+- Brand colors
+  - Primary: #C12323
+  - Secondary: #212121
+  - Background: #FFFFFF
+- Mobile-first responsive layout
+- Sticky header with hamburger menu
+- Tabs for About and Portfolio sections
+- Articles paginated (6 per page) with Previous/Next controls
+- Contact with social icons and mailto link
+
+## Notes
+
+- This app uses public rss2json API to read Medium RSS feeds. You can swap to a self-hosted proxy if rate limits become an issue.
+- Images are lightweight SVG placeholders for fast loads; replace them with real screenshots as needed.
+
+## Build
+
+npm run build
+npm start
