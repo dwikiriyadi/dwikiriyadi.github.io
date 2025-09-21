@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Tab from "@/components/Tab/Tab";
-import { Minus, Plus, Briefcase, X, DownloadSimple } from "@phosphor-icons/react";
+import { Briefcase, X, DownloadSimple } from "@phosphor-icons/react";
 import { OVERVIEW_TEXT, EXPERIENCES, SKILLS } from "@/data/about";
+import AccordionItem from "@/components/Accordion/Accordion";
 
 export default function About() {
   const [activeKey, setActiveKey] = useState<string>("overview");
@@ -90,8 +91,10 @@ export default function About() {
                       <AccordionItem
                         key={idx}
                         title={
-                          <div className="flex items-start gap-3">
-                            <Briefcase size={20} className="text-neutral-400 shrink-0" />
+                          <div className="flex items-center gap-3">
+                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0">
+                              <Briefcase size={24} className="text-neutral-400" />
+                            </div>
                             <div>
                               <div className="text-sm text-neutral-400">{e.company} <span className="mx-1">|</span> {e.location} <span className="mx-1">|</span> {e.employment}</div>
                               <div className="font-semibold text-white">{e.role}</div>
@@ -110,28 +113,55 @@ export default function About() {
                 key: "skill",
                 label: "Skill",
                 content: (
-                  <ul className="space-y-3 max-w-3xl mx-auto">
-                    {SKILLS.map((s) => (
-                      <AccordionItem
-                        key={s.key}
-                        title={
-                          <div className="flex items-start gap-3">
-                            <s.Icon size={20} className="text-neutral-400 shrink-0" />
+                  <div className="max-w-3xl mx-auto">
+                    {/* Mobile: show items as simple columns with tags visible (no accordion) */}
+                    <ul className="md:hidden space-y-3">
+                      {SKILLS.map((s) => (
+                        <li key={s.key} className="rounded border border-neutral-800 p-4">
+                          <div className="flex flex-col items-center text-center gap-3">
+                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0">
+                              <s.Icon size={24} className="text-neutral-400" />
+                            </div>
                             <div>
                               <div className="font-semibold text-white">{s.title}</div>
                               <p className="text-sm text-neutral-400 mt-0.5">{s.desc}</p>
                             </div>
                           </div>
-                        }
-                      >
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {s.tags.map((t) => (
-                            <span key={t} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-xs">{t}</span>
-                          ))}
-                        </div>
-                      </AccordionItem>
-                    ))}
-                  </ul>
+                          <div className="mt-3 flex flex-wrap justify-center gap-2">
+                            {s.tags.map((t) => (
+                              <span key={t} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-xs">{t}</span>
+                            ))}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Desktop: keep accordion behavior */}
+                    <ul className="hidden md:block space-y-3">
+                      {SKILLS.map((s) => (
+                        <AccordionItem
+                          key={s.key}
+                          title={
+                            <div className="flex items-center gap-3">
+                              <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0">
+                                <s.Icon size={24} className="text-neutral-400" />
+                              </div>
+                              <div>
+                                <div className="font-semibold text-white">{s.title}</div>
+                                <p className="text-sm text-neutral-400 mt-0.5">{s.desc}</p>
+                              </div>
+                            </div>
+                          }
+                        >
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {s.tags.map((t) => (
+                              <span key={t} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-xs">{t}</span>
+                            ))}
+                          </div>
+                        </AccordionItem>
+                      ))}
+                    </ul>
+                  </div>
                 ),
               },
             ]}
@@ -142,15 +172,3 @@ export default function About() {
   );
 }
 
-function AccordionItem({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <li className="rounded border border-neutral-800">
-      <button type="button" className="w-full text-left p-4 flex items-start justify-between gap-4" onClick={() => setOpen((v) => !v)}>
-        <div className="min-w-0 flex-1">{title}</div>
-        <div className="shrink-0 text-neutral-400">{open ? <Minus size={20} /> : <Plus size={20} />}</div>
-      </button>
-      {open && <div className="px-4 pb-4">{children}</div>}
-    </li>
-  );
-}
