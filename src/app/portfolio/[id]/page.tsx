@@ -15,14 +15,13 @@ function getItem(id: string): { item: PortfolioItem; index: number } | null {
 }
 
 interface PageProps {
-  params: {
-    id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default function Page({ params }: PageProps) {
-  const found = getItem(params.id);
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const found = getItem(id);
   if (!found) return notFound();
   const { item, index } = found;
   const prev = PORTFOLIO_ITEMS[(index - 1 + PORTFOLIO_ITEMS.length) % PORTFOLIO_ITEMS.length];
