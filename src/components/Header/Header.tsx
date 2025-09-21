@@ -1,14 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { SidebarSimple } from "@phosphor-icons/react";
-
-const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#articles", label: "Articles" },
-  { href: "#contact", label: "Contact" },
-];
+import { SidebarSimple, GithubLogo } from "@phosphor-icons/react";
+import { NAV_ITEMS, SECTION_IDS } from "@/data/navigation";
 
 const EXPANDED_WIDTH = "16rem"; // 256px
 const RAIL_WIDTH = "4.5rem"; // 72px
@@ -32,7 +26,7 @@ export default function Header() {
   // Compute numbered labels
   const numbered = useMemo(
     () =>
-      navItems.map((it, idx) => ({
+      NAV_ITEMS.map((it, idx) => ({
         ...it,
         num: String(idx).padStart(2, "0"),
       })),
@@ -83,8 +77,7 @@ export default function Header() {
 
   // Observe sections for scroll spy
   useEffect(() => {
-    const sectionIds = ["about", "portfolio", "articles", "contact"];
-    const sections = sectionIds
+    const sections = SECTION_IDS
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
@@ -236,7 +229,7 @@ export default function Header() {
                 className="inline-flex items-center gap-2 text-[#9A9A9A] md:hidden"
                 aria-label="GitHub"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+                <GithubLogo size={24} />
                 <span className="text-sm font-medium">GitHub</span>
               </a>
               {/* Desktop: show GitHub only when expanded */}
@@ -247,7 +240,7 @@ export default function Header() {
                   className="hidden md:inline-flex items-center gap-2 text-[#9A9A9A]"
                   aria-label="GitHub"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+                  <GithubLogo size={24} />
                   <span className="text-sm font-medium">GitHub</span>
                 </a>
               )}

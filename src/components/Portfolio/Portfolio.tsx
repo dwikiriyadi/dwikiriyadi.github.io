@@ -2,40 +2,7 @@
 import Image from "next/image";
 import Tab from "@/components/Tab/Tab";
 import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
-
-const items: PortfolioItem[] = [
-  {
-    id: "1",
-    title: "Fitness Tracker",
-    description: "Android app with Jetpack Compose, offline-first architecture.",
-    image: "/images/fitness.svg",
-    link: "#",
-    category: "Android",
-  },
-  {
-    id: "2",
-    title: "Travel Booking",
-    description: "Flutter app with custom animations and theming.",
-    image: "/images/travel.svg",
-    link: "#",
-    category: "Flutter",
-  },
-  {
-    id: "3",
-    title: "Finance Dashboard",
-    description: "Clean UI exploration in Figma for a fintech dashboard.",
-    image: "/images/finance.svg",
-    category: "UI Design",
-  },
-  {
-    id: "4",
-    title: "Notes App",
-    description: "Compose Material 3, Room, and WorkManager integration.",
-    image: "/images/notes.svg",
-    link: "#",
-    category: "Android",
-  },
-];
+import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from "@/data/portfolio";
 
 function Carousel({ data }: { data: PortfolioItem[] }) {
   // Drag to scroll horizontally
@@ -87,17 +54,16 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
 }
 
 export default function Portfolio() {
-  const categories: ("All" | PortfolioCategory)[] = ["All", "Android", "Flutter", "UI Design"];
   return (
     <section id="portfolio" className="h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">Portfolio</h2>
         <p className="text-center text-neutral-400 mt-1">A Collection of My Work</p>
         <Tab
-          items={categories.map((cat) => ({
+          items={PORTFOLIO_CATEGORIES.map((cat) => ({
             key: cat,
             label: cat,
-            content: <Carousel data={cat === "All" ? items : items.filter((i) => i.category === cat)} />,
+            content: <Carousel data={cat === "All" ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter((i) => i.category === cat)} />,
           }))}
         />
       </div>

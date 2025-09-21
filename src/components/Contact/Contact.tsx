@@ -1,13 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-
-const socials = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/dwikiriyadi", svg: (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.1c.7-1.2 2.5-2.5 5.1-2.5C22.6 7.7 24 10.1 24 14.1V24h-5v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.3 2.3-3.3 4.6V24H8z"/></svg>) },
-  { name: "Medium", href: "https://medium.com/@dwikiriyadi", svg: (<svg width="20" height="20" viewBox="0 0 1043.63 592.71" fill="currentColor"><path d="M588.67 296.45c0 163.69-131.36 296.26-293.39 296.26S1.89 460.14 1.89 296.45 133.25.19 295.28.19s293.39 132.57 293.39 296.26"/><path d="M772.33 296.45c0 154.21-65.68 279.26-146.74 279.26S478.85 450.66 478.85 296.45 544.53 17.19 625.59 17.19s146.74 125.05 146.74 279.26"/><path d="M1043.63 296.45c0 141.88-23.45 256.8-52.37 256.8s-52.37-114.92-52.37-256.8 23.45-256.8 52.37-256.8 52.37 114.92 52.37 256.8"/></svg>) },
-  { name: "Instagram", href: "https://instagram.com", svg: (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.5-.8a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>) },
-  { name: "YouTube", href: "https://youtube.com", svg: (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.3 3.5 12 3.5 12 3.5s-7.3 0-9.4.6A3 3 0 00.5 6.2 31.7 31.7 0 000 12a31.7 31.7 0 00.5 5.8A3 3 0 002.6 20c2.1.6 9.4.6 9.4.6s7.3 0 9.4-.6a3 3 0 002.1-2.1c.4-1.9.5-3.9.5-5.9 0-2-.1-4-.5-5.8zM9.8 15.5V8.5L16 12l-6.2 3.5z"/></svg>) },
-  { name: "GitHub", href: "https://github.com/dwikiriyadi", svg: (<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>) },
-];
+import { SOCIAL_LINKS } from "@/data/socials";
 
 export default function Contact() {
   const [cooldown, setCooldown] = useState(false);
@@ -70,9 +63,9 @@ export default function Contact() {
             <div className="flex items-center gap-3">
               <span className="text-neutral-400 text-sm">Find me on</span>
               <div className="flex flex-wrap gap-2 items-center">
-                {socials.map((s) => (
+                {SOCIAL_LINKS.map((s) => (
                   <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 transition-colors text-neutral-200">
-                    {s.svg}
+                    <s.Icon size={18} />
                   </a>
                 ))}
               </div>
