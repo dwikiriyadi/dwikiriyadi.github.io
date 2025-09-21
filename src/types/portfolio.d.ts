@@ -1,4 +1,9 @@
-export type PortfolioCategory = "Android" | "Flutter" | "UI Design" | "Web" | "Library";
+export type PortfolioCategory =
+  | "Android"
+  | "Flutter"
+  | "UI Design"
+  | "Web"
+  | "Library";
 
 export type PortfolioIconKey = "github" | "link" | "googlePlay" | "medium";
 

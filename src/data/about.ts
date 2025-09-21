@@ -1,4 +1,10 @@
-import { DeviceMobile, SquaresFour, Wrench, FlowArrow, Lightbulb } from "@phosphor-icons/react";
+import {
+  DeviceMobile,
+  SquaresFour,
+  Wrench,
+  FlowArrow,
+  Lightbulb,
+} from "@phosphor-icons/react";
 
 export const OVERVIEW_TEXT = `My career in software development began in 2018, where I started as a full-stack developer. In those early days, I immersed myself in building web applications using Laravel, jQuery, and Vue.js. Simultaneously, I ventured into Android development with Java, and even explored UI/UX design using Adobe XD for specific projects.
 
@@ -117,35 +123,73 @@ export const SKILLS: SkillItem[] = [
     key: "mobile",
     title: "Mobile Development",
     desc: "Designing and building robust, scalable mobile applications with a focus on performance, offline-first experiences, and delightful UX. Comfortable leading end-to-end delivery from architecture to Play Store/App Store releases.",
-    tags: ["Kotlin", "Coroutines", "Compose", "Android SDK", "Flutter", "Dart", "Riverpod/Bloc", "Firebase", "Room/SQLDelight"],
+    tags: [
+      "Kotlin",
+      "Coroutines",
+      "Compose",
+      "Android SDK",
+      "Flutter",
+      "Dart",
+      "Riverpod/Bloc",
+      "Firebase",
+      "Room/SQLDelight",
+    ],
     Icon: DeviceMobile,
   },
   {
     key: "arch",
     title: "Software Architecture & Design",
     desc: "Applying pragmatic architectural patterns that balance flexibility and simplicity. Emphasis on clean boundaries, testability, and maintainability across modular codebases.",
-    tags: ["Clean Architecture", "MVVM/MVI", "Modularization", "SOLID", "Design Systems", "Domain-Driven Thinking"],
+    tags: [
+      "Clean Architecture",
+      "MVVM/MVI",
+      "Modularization",
+      "SOLID",
+      "Design Systems",
+      "Domain-Driven Thinking",
+    ],
     Icon: SquaresFour,
   },
   {
     key: "tools",
     title: "Tools & Technologies",
     desc: "Leveraging modern toolchains to streamline development, improve quality, and speed up delivery across platforms and teams.",
-    tags: ["Git/GitHub", "CI/CD", "Gradle", "Kotlin DSL", "Lint/Detekt", "Figma"],
+    tags: [
+      "Git/GitHub",
+      "CI/CD",
+      "Gradle",
+      "Kotlin DSL",
+      "Lint/Detekt",
+      "Figma",
+    ],
     Icon: Wrench,
   },
   {
     key: "practices",
     title: "Development Practices & Methodologies",
     desc: "Disciplined engineering practices that improve reliability and collaboration, with a product mindset and user-centric delivery.",
-    tags: ["Code Review", "Testing", "TDD (pragmatic)", "Agile/Scrum", "Docs as Code", "Performance Profiling"],
+    tags: [
+      "Code Review",
+      "Testing",
+      "TDD (pragmatic)",
+      "Agile/Scrum",
+      "Docs as Code",
+      "Performance Profiling",
+    ],
     Icon: FlowArrow,
   },
   {
     key: "pro",
     title: "Professional Attributes & Problem Solving",
     desc: "Strong ownership and communication. Comfortable with ambiguity, capable of decomposing complex problems and shipping incremental value.",
-    tags: ["Communication", "Leadership", "Mentorship", "Problem Framing", "Tradeoff Analysis", "Stakeholder Alignment"],
+    tags: [
+      "Communication",
+      "Leadership",
+      "Mentorship",
+      "Problem Framing",
+      "Tradeoff Analysis",
+      "Stakeholder Alignment",
+    ],
     Icon: Lightbulb,
   },
 ];

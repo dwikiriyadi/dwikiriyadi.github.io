@@ -1,25 +1,36 @@
 import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
-    {
-        id: "1",
-        title: "JSON UI (Flutter)",
-        description: `
+  {
+    id: "1",
+    title: "JSON UI (Flutter)",
+    description: `
         Json UI Flutter is a small experimental library that turns JSON into Flutter widgets. The goal was to validate a concept: could we describe UI with a portable schema and render it dynamically in Flutter? This work was inspired by a Kotlin-based UI generator I previously built using collections and data classes.
 
         In this exploration, I focused on a clear JSON structure, a minimal but extensible widget registry, and predictable layout behavior. I also wrote an article to document the approach, trade‑offs, and next steps, including how this concept might evolve into a production‑ready renderer with validation and schema tooling.
         `,
-        image: "portofolio/json_ui_flutter/bg.png",
-        images: ["portofolio/json_ui_flutter/image-1.png", "portofolio/json_ui_flutter/image-2.png", "portofolio/json_ui_flutter/image-3.png"],
-        backgroundImages: ["portofolio/json_ui_flutter/bg.png"],
-        company: "PT. KB Finansia Multi Finance",
-        links: [
-          { label: "Github", href: "https://github.com/srctool/flutter-json-ui", icon: "github" },
-                    { label: "Medium", href: "https://wikinotes.medium.com/building-a-dynamic-ui-in-flutter-using-json-schema-03e4062780e8", icon: "medium" },
-
-        ],
-        category: "UI Design",
+    image: "portofolio/json_ui_flutter/bg.png",
+    images: [
+      "portofolio/json_ui_flutter/image-1.png",
+      "portofolio/json_ui_flutter/image-2.png",
+      "portofolio/json_ui_flutter/image-3.png",
+    ],
+    backgroundImages: ["portofolio/json_ui_flutter/bg.png"],
+    company: "PT. KB Finansia Multi Finance",
+    links: [
+      {
+        label: "Github",
+        href: "https://github.com/srctool/flutter-json-ui",
+        icon: "github",
       },
+      {
+        label: "Medium",
+        href: "https://wikinotes.medium.com/building-a-dynamic-ui-in-flutter-using-json-schema-03e4062780e8",
+        icon: "medium",
+      },
+    ],
+    category: "UI Design",
+  },
   {
     id: "2",
     title: "BAT Solution Website",
@@ -46,11 +57,20 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     The outcome was a much clearer mental model for Flutter architecture and a stronger sense of when to choose simplicity over abstraction. It also taught me how to evaluate libraries pragmatically rather than theoretically.
     `,
     image: "portofolio/amigo_member/bg.png",
-    images: ["portofolio/amigo_member/image-1.png", "portofolio/amigo_member/image-2.png", "portofolio/amigo_member/image-3.png", "portofolio/amigo_member/image-4.png"],
+    images: [
+      "portofolio/amigo_member/image-1.png",
+      "portofolio/amigo_member/image-2.png",
+      "portofolio/amigo_member/image-3.png",
+      "portofolio/amigo_member/image-4.png",
+    ],
     backgroundImages: ["portofolio/amigo_member/bg.png"],
     company: "Amigo Group Indonesia",
     links: [
-        { label: "Play Store", href: "https://play.google.com/store/apps/details?id=id.amigogroup.member&hl=en&pli=1", icon: "googlePlay" },
+      {
+        label: "Play Store",
+        href: "https://play.google.com/store/apps/details?id=id.amigogroup.member&hl=en&pli=1",
+        icon: "googlePlay",
+      },
     ],
     category: "Flutter",
   },
@@ -63,11 +83,15 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     The work included navigation and state handling across modules, a scalable theming system, and patterns for complex forms and lists. Lessons learned from earlier iterations directly informed the design of reusable UI primitives and data flows.
     `,
     image: "portofolio/logee/bg.png",
-    images: ["portofolio/logee/image-1.png", "portofolio/logee/image-2.png", "portofolio/logee/image-3.png", "portofolio/logee/image-4.png"],
+    images: [
+      "portofolio/logee/image-1.png",
+      "portofolio/logee/image-2.png",
+      "portofolio/logee/image-3.png",
+      "portofolio/logee/image-4.png",
+    ],
     backgroundImages: ["portofolio/logee/bg.png"],
     company: "Logee",
-    links: [
-    ],
+    links: [],
     category: "Android",
   },
   {
@@ -79,11 +103,14 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     I also experimented heavily with Jetpack Compose—building a set of reusable UI components, improving state management patterns, and standardizing UI behavior. These learnings laid the groundwork for the component library later reused in the next iteration of the app.
     `,
     image: "portofolio/logee_order/bg.png",
-    images: ["portofolio/logee_order/image-1.png", "portofolio/logee_order/image-2.png", "portofolio/logee_order/image-3.png"],
+    images: [
+      "portofolio/logee_order/image-1.png",
+      "portofolio/logee_order/image-2.png",
+      "portofolio/logee_order/image-3.png",
+    ],
     backgroundImages: ["portofolio/logee_order/bg.png"],
     company: "Logee",
-    links: [
-    ],
+    links: [],
     category: "Android",
   },
   {
@@ -95,29 +122,36 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     The project involved designing a simple, reliable flow for registration, validation, and status updates, along with clear UI feedback to reduce confusion at peak hours. Real-time updates significantly improved transparency and reduced perceived waiting time.
     `,
     image: "portofolio/rsud_queue/bg.png",
-    images: ["portofolio/rsud_queue/image-1.png", "portofolio/rsud_queue/image-2.png", "portofolio/rsud_queue/image-3.png", "portofolio/rsud_queue/image-4.png", "portofolio/rsud_queue/image-5.png"],
+    images: [
+      "portofolio/rsud_queue/image-1.png",
+      "portofolio/rsud_queue/image-2.png",
+      "portofolio/rsud_queue/image-3.png",
+      "portofolio/rsud_queue/image-4.png",
+      "portofolio/rsud_queue/image-5.png",
+    ],
     backgroundImages: ["portofolio/rsud_queue/bg.png"],
     company: "Logee",
-    links: [
-    ],
+    links: [],
     category: "Android",
   },
   {
-     id: "7",
-     title: "BIT Studio Website",
-     description: `
+    id: "7",
+    title: "BIT Studio Website",
+    description: `
      I started my first commanditaire vennootschap with friends and we needed a proper online presence. I asked a friend to handle the visual design, then I implemented the design and built a responsive site using Vue. The focus was on fast load, clean structure, and a layout that could evolve as our services grew.
 
      This project taught me how to translate a static design into a maintainable frontend, organize components for reuse, and make pragmatic choices about animation and performance on low‑end devices.
      `,
-     image: "portofolio/bit_studio/bg.png",
-     images: ["portofolio/bit_studio/image-1.png", "portofolio/bit_studio/image-2.png"],
-     backgroundImages: ["portofolio/bit_studio/bg.png"],
-     company: "BIT Studio",
-     links: [
-     ],
-     category: "Web",
-   },
+    image: "portofolio/bit_studio/bg.png",
+    images: [
+      "portofolio/bit_studio/image-1.png",
+      "portofolio/bit_studio/image-2.png",
+    ],
+    backgroundImages: ["portofolio/bit_studio/bg.png"],
+    company: "BIT Studio",
+    links: [],
+    category: "Web",
+  },
 ];
 
 export const PORTFOLIO_CATEGORIES: ("All" | PortfolioCategory)[] = [
@@ -126,5 +160,5 @@ export const PORTFOLIO_CATEGORIES: ("All" | PortfolioCategory)[] = [
   "Flutter",
   "UI Design",
   "Web",
-  "Library"
+  "Library",
 ];

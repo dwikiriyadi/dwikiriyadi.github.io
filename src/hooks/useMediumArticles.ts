@@ -25,15 +25,21 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | undefined>();
   // Reset to first page whenever pageSize changes to keep indexes valid
-  useEffect(() => { setPage(1); }, [pageSize]);
+  useEffect(() => {
+    setPage(1);
+  }, [pageSize]);
 
   useEffect(() => {
     async function fetchRss() {
       setLoading(true);
       setError(undefined);
       try {
-        const rssUrl = encodeURIComponent(`https://medium.com/feed/@${MEDIUM_USERNAME}`);
-        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+        const rssUrl = encodeURIComponent(
+          `https://medium.com/feed/@${MEDIUM_USERNAME}`,
+        );
+        const res = await fetch(
+          `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`,
+        );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setRaw(Array.isArray(data.items) ? data.items : []);
@@ -52,7 +58,8 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
       title: it.title,
       link: it.link,
       pubDate: new Date(it.pubDate).toISOString(),
-      excerpt: (it.description || "").replace(/<[^>]+>/g, "").slice(0, 180) + "…",
+      excerpt:
+        (it.description || "").replace(/<[^>]+>/g, "").slice(0, 180) + "…",
     }));
   }, [raw]);
 
