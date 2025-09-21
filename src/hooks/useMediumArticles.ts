@@ -4,8 +4,9 @@ import type { ArticleItem } from "@/types/article";
 
 // Simple client-side fetcher for Medium RSS via rss2json
 // Replace MEDIUM_USERNAME with your Medium handle
-const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME || "dwikiriyadi";
-const PAGE_SIZE = 6; // 5–10 per requirements
+const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME || "wikinotes";
+// default page size; can be overridden by hook consumer based on device
+const DEFAULT_PAGE_SIZE = 3; // fixed per request
 
 interface UseMediumArticlesResult {
   items: ArticleItem[];
@@ -18,11 +19,13 @@ interface UseMediumArticlesResult {
   error?: string;
 }
 
-export function useMediumArticles(): UseMediumArticlesResult {
+export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
   const [raw, setRaw] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | undefined>();
+  // Reset to first page whenever pageSize changes to keep indexes valid
+  useEffect(() => { setPage(1); }, [pageSize]);
 
   useEffect(() => {
     async function fetchRss() {
@@ -53,9 +56,10 @@ export function useMediumArticles(): UseMediumArticlesResult {
     }));
   }, [raw]);
 
-  const totalPages = Math.max(1, Math.ceil(articles.length / PAGE_SIZE));
-  const start = (page - 1) * PAGE_SIZE;
-  const pageItems = articles.slice(start, start + PAGE_SIZE);
+  const size = Math.max(1, pageSize || DEFAULT_PAGE_SIZE);
+  const totalPages = Math.max(1, Math.ceil(articles.length / size));
+  const start = (page - 1) * size;
+  const pageItems = articles.slice(start, start + size);
 
   return {
     items: pageItems,

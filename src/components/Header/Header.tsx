@@ -119,19 +119,21 @@ export default function Header() {
   // Mobile open button (Phosphor Sidebar icon)
   return (
     <>
-      <button
-        aria-label="Open menu"
-        className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-800"
-        onClick={() => setMobileOpen(true)}
-      >
-        <SidebarSimple size={22} weight="regular" />
-      </button>
+      {!mobileOpen && (
+        <button
+          aria-label="Open menu"
+          className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-800"
+          onClick={() => setMobileOpen(true)}
+        >
+          <SidebarSimple size={22} weight="regular" />
+        </button>
+      )}
 
       {/* Drawer / Sidebar */}
       <aside
         className={
           [
-            "fixed top-0 left-0 z-40 h-screen bg-[var(--color-secondary)] text-white border-r border-neutral-800",
+            "fixed top-0 left-0 z-40 h-[var(--app-height,100vh)] bg-[var(--color-secondary)] text-white border-r border-neutral-800",
             // Mobile slide in/out
             mobileOpen ? "translate-x-0 w-64" : "-translate-x-full w-64",
             // Desktop pinned; we avoid translate to keep it visible as rail
@@ -195,15 +197,26 @@ export default function Header() {
                     >
                       {it.num}
                     </span>
-                    {/* Divider dash only when expanded */}
-                    {!desktopHidden && <span className={active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white"}>-</span>}
-                    {/* Label hidden in rail */}
+                    {/* Mobile: show divider and label always when drawer is open */}
+                    <span
+                      className={[
+                        "md:hidden",
+                        active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white",
+                      ].join(" ")}
+                    >
+                      <span className="px-1">|</span>
+                      <span>{it.label}</span>
+                    </span>
+                    {/* Desktop: show divider and label only when expanded (not in rail) */}
                     {!desktopHidden && (
-                      <span
-                        className={active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white"}
-                      >
-                        {it.label}
-                      </span>
+                      <>
+                        <span className={(active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white") + " hidden md:inline"}>
+                          |
+                        </span>
+                        <span className={(active ? "text-[var(--color-primary)]" : "text-[#9A9A9A] group-hover:text-white") + " hidden md:inline"}>
+                          {it.label}
+                        </span>
+                      </>
                     )}
                   </a>
                 );
@@ -211,17 +224,27 @@ export default function Header() {
             </nav>
 
             {/* Footer with logo and GitHub link */}
-            <div className={desktopHidden ? "mt-2 px-3 py-4 border-t border-neutral-800 flex items-center justify-center gap-3" : "mt-2 px-3 py-4 border-t border-neutral-800 flex items-center gap-3"}>
-              <div className="flex items-center justify-center">
-                {/* Show logo; in rail, center it; in expanded, align start */}
+            <div className={"mt-2 px-3 py-4 border-t border-neutral-800 flex items-center gap-3 justify-start " + (desktopHidden ? "md:justify-center" : "")}>
+              <div className="flex items-center">
+                {/* Show logo; in rail (desktop), center; on mobile always start */}
                 <Image src="/logo_rounded.svg" alt="Logo" width={36} height={36} />
               </div>
-              {/* GitHub link shown only when expanded per layout constraints */}
+              {/* Mobile: always show GitHub link when drawer is visible */}
+              <a
+                href="https://github.com/dwikiriyadi"
+                target="_blank"
+                className="inline-flex items-center gap-2 text-[#9A9A9A] md:hidden"
+                aria-label="GitHub"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+                <span className="text-sm font-medium">GitHub</span>
+              </a>
+              {/* Desktop: show GitHub only when expanded */}
               {!desktopHidden && (
                 <a
                   href="https://github.com/dwikiriyadi"
                   target="_blank"
-                  className="inline-flex items-center gap-2 text-[#9A9A9A]"
+                  className="hidden md:inline-flex items-center gap-2 text-[#9A9A9A]"
                   aria-label="GitHub"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.4-.9-.1-1.9-.5-1.9-2.3 0-.5.2-1 .5-1.4-.1-.1-.3-.7.1-1.6 0 0 .8-.3 2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.8-1.3 2.6-1 2.6-1 .4.9.2 1.5.1 1.6.3.4.5.9.5 1.4 0 1.8-1 2.1-2 2.3.9.8 1.2 1.7 1.2 2.7v4c0 .3.2.6.7.5C19.1 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>

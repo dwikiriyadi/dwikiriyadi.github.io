@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export interface TabItem {
   key: string;
@@ -7,8 +7,17 @@ export interface TabItem {
   content: ReactNode;
 }
 
-export default function Tab({ items, defaultKey }: { items: TabItem[]; defaultKey?: string }) {
-  const [active, setActive] = useState<string>(defaultKey ?? items[0]?.key);
+export default function Tab({ items, defaultKey, activeKey, onChange }: { items: TabItem[]; defaultKey?: string; activeKey?: string; onChange?: (key: string) => void }) {
+  const isControlled = activeKey !== undefined;
+  const [internalActive, setInternalActive] = useState<string>(defaultKey ?? items[0]?.key);
+  const active = isControlled ? (activeKey as string) : internalActive;
+  useEffect(() => {
+    if (!isControlled && defaultKey) setInternalActive(defaultKey);
+  }, [defaultKey, isControlled]);
+  function setActive(key: string) {
+    if (!isControlled) setInternalActive(key);
+    onChange?.(key);
+  }
   return (
     <div>
       <div role="tablist" aria-label="Tabs" className="w-full flex flex-wrap items-center justify-center gap-2 border-b border-neutral-800">

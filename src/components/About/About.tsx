@@ -1,60 +1,209 @@
 "use client";
+import { useEffect, useMemo, useState } from "react";
 import Tab from "@/components/Tab/Tab";
+import { Minus, Plus, Briefcase, DeviceMobile, SquaresFour, Wrench, FlowArrow, Lightbulb, X, DownloadSimple } from "@phosphor-icons/react";
 
-const aboutData = {
-  overview: `I'm a mobile developer focused on crafting delightful Android and Flutter experiences. I care about performance, accessibility, and clean design. This portfolio showcases selected work, articles, and ways to reach me.`,
-  experience: [
-    { role: "Senior Mobile Engineer", company: "Acme Corp", period: "2022 — Present", details: "Lead Android & Flutter initiatives, architected modular design system." },
-    { role: "Mobile Developer", company: "Startup XYZ", period: "2019 — 2022", details: "Built and shipped cross‑platform apps to thousands of users." },
-  ],
-  skills: [
-    "Kotlin", "Jetpack Compose", "Android SDK", "Flutter", "Dart", "UI/UX", "Figma", "REST/GraphQL"
-  ],
-};
+const overviewText = `My career in software development began in 2018, where I started as a full-stack developer. In those early days, I immersed myself in building web applications using Laravel, jQuery, and Vue.js. Simultaneously, I ventured into Android development with Java, and even explored UI/UX design using Adobe XD for specific projects.
+
+The initial years were a period of intense self-discovery. With no formal mentor, I dedicated myself to experimenting with various tools and frameworks. This hands-on exploration was crucial for me to truly understand different approaches and forge my own best practices in a rapidly evolving field.
+
+Today, my focus has shifted primarily to mobile development. I specialize in creating robust applications using Kotlin and Flutter, and I'm committed to staying updated with the latest advancements in software development to continuously refine my skills and deliver cutting-edge solutions.`;
+
+const experiences = [
+  { company: "CV. Borneo Algorithm Technology", location: "Pontianak", employment: "Self-employed", role: "Software Engineer", period: "Maret 2024 - Present", details: "" },
+  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Freelance", role: "Flutter Developer", period: "Maret 2023 - Present", details: "" },
+  { company: "PT. KB Finansia Multi Finance", location: "Jakarta", employment: "Full-time", role: "Senior Mobile Engineer", period: "August 2024 - August 2025", details: "" },
+  { company: "LOGEE", location: "Jakarta", employment: "Full-time", role: "Android Developer", period: "Juny 2020 - December 2023", details: "" },
+  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Freelance", role: "Flutter Developer", period: "May 2020 - December 2021", details: "" },
+  { company: "Amigo Group Indonesia", location: "Yogyakarta", employment: "Full-time", role: "Mobile Developer", period: "April 2019 - May 2020", details: "" },
+  { company: "IdeKite Indonesia", location: "Pontianak", employment: "Full-time", role: "Full Stack Developer", period: "Februari 2018 - February 2019", details: "" },
+];
+
+const skills = [
+  {
+    key: "mobile",
+    title: "Mobile Development",
+    desc: "Designing and building robust, scalable mobile applications with a focus on performance, offline-first experiences, and delightful UX. Comfortable leading end-to-end delivery from architecture to Play Store/App Store releases.",
+    tags: ["Kotlin", "Coroutines", "Compose", "Android SDK", "Flutter", "Dart", "Riverpod/Bloc", "Firebase", "WorkManager", "Room/SQLDelight"],
+    Icon: DeviceMobile,
+  },
+  {
+    key: "arch",
+    title: "Software Architecture & Design",
+    desc: "Applying pragmatic architectural patterns that balance flexibility and simplicity. Emphasis on clean boundaries, testability, and maintainability across modular codebases.",
+    tags: ["Clean Architecture", "MVVM/MVI", "Modularization", "SOLID", "Design Systems", "Domain-Driven Thinking"],
+    Icon: SquaresFour,
+  },
+  {
+    key: "tools",
+    title: "Tools & Technologies",
+    desc: "Leveraging modern toolchains to streamline development, improve quality, and speed up delivery across platforms and teams.",
+    tags: ["Git/GitHub", "CI/CD", "Fastlane", "Gradle", "Kotlin DSL", "Lint/Detekt", "Figma"],
+    Icon: Wrench,
+  },
+  {
+    key: "practices",
+    title: "Development Practices & Methodologies",
+    desc: "Disciplined engineering practices that improve reliability and collaboration, with a product mindset and user-centric delivery.",
+    tags: ["Code Review", "Testing", "TDD (pragmatic)", "Agile/Scrum", "Docs as Code", "Performance Profiling"],
+    Icon: FlowArrow,
+  },
+  {
+    key: "pro",
+    title: "Professional Attributes & Problem Solving",
+    desc: "Strong ownership and communication. Comfortable with ambiguity, capable of decomposing complex problems and shipping incremental value.",
+    tags: ["Communication", "Leadership", "Mentorship", "Problem Framing", "Tradeoff Analysis", "Stakeholder Alignment"],
+    Icon: Lightbulb,
+  },
+];
 
 export default function About() {
+  const [activeKey, setActiveKey] = useState<string>("overview");
+  const [showDownload, setShowDownload] = useState<boolean>(false);
+  // Close on Escape when dialog is open
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowDownload(false);
+    }
+    if (showDownload) {
+      window.addEventListener("keydown", onKey);
+      return () => window.removeEventListener("keydown", onKey);
+    }
+  }, [showDownload]);
+
+  const subtitle = useMemo(() => {
+    switch (activeKey) {
+      case "overview":
+        return "Who am I & What I do";
+      case "experience":
+        return "Where I've contribute & grown";
+      case "skill":
+        return "What I bring to the table";
+      default:
+        return "";
+    }
+  }, [activeKey]);
+
   return (
-    <section id="about" className="h-screen flex items-center py-16 scroll-mt-16 snap-start snap-always">
+    <section id="about" className="md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">About Myself</h2>
-        <Tab
-          items={[
-            {
-              key: "overview",
-              label: "Overview",
-              content: (
-                <p className="text-neutral-300 leading-7 max-w-2xl mx-auto text-center">{aboutData.overview}</p>
-              ),
-            },
-            {
-              key: "experience",
-              label: "Experience",
-              content: (
-                <ul className="space-y-4 max-w-3xl mx-auto">
-                  {aboutData.experience.map((e) => (
-                    <li key={e.role} className="p-4 rounded border border-neutral-800">
-                      <div className="font-semibold">{e.role} · {e.company}</div>
-                      <div className="text-sm text-neutral-500">{e.period}</div>
-                      <p className="mt-1 text-neutral-300">{e.details}</p>
-                    </li>
-                  ))}
-                </ul>
-              ),
-            },
-            {
-              key: "skill",
-              label: "Skill",
-              content: (
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {aboutData.skills.map((s) => (
-                    <span key={s} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-sm">{s}</span>
-                  ))}
-                </div>
-              ),
-            },
-          ]}
-        />
+        {subtitle && <p className="text-center text-neutral-400 mt-1">{subtitle}</p>}
+        <div className="mt-6">
+          <Tab
+            activeKey={activeKey}
+            onChange={setActiveKey}
+            items={[
+              {
+                key: "overview",
+                label: "Overview",
+                content: (
+                  <div className="max-w-3xl mx-auto text-center">
+                    <p className="text-neutral-300 leading-7 whitespace-pre-line">{overviewText}</p>
+                    <div className="mt-6 flex items-center justify-center">
+                      <button type="button" onClick={() => setShowDownload(true)} className="inline-flex items-center gap-2 px-4 py-2 rounded bg-[var(--color-primary)] text-white hover:opacity-90" aria-label="Download Resume or Portfolio">
+                        <DownloadSimple size={18} /> Download Resume/Portfolio
+                      </button>
+                      {showDownload && (
+                        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
+                          <div className="absolute inset-0 bg-black/60" onClick={() => setShowDownload(false)} />
+                          <div className="absolute inset-x-0 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[420px] rounded-t-2xl md:rounded-xl bg-neutral-900 border border-neutral-800 p-4 shadow-xl">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h3 className="text-white font-semibold">Choose file to download</h3>
+                                <p className="text-sm text-neutral-400">Select a document</p>
+                              </div>
+                              <button type="button" onClick={() => setShowDownload(false)} className="p-2 text-neutral-400 hover:text-neutral-200">
+                                <X size={18} />
+                              </button>
+                            </div>
+                            <div className="mt-4 space-y-3">
+                              <a href="/resume.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50">
+                                <span className="text-neutral-100">Resume (PDF)</span>
+                                <span className="text-xs text-neutral-500">.pdf</span>
+                              </a>
+                              <a href="/portfolio.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50">
+                                <span className="text-neutral-100">Portfolio (PDF)</span>
+                                <span className="text-xs text-neutral-500">.pdf</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                key: "experience",
+                label: "Experience",
+                content: (
+                  <ul className="space-y-3 max-w-3xl mx-auto">
+                    {experiences.map((e, idx) => (
+                      <AccordionItem
+                        key={idx}
+                        title={
+                          <div className="flex items-start gap-3">
+                            <Briefcase size={20} className="text-neutral-400 shrink-0" />
+                            <div>
+                              <div className="text-sm text-neutral-400">{e.company} <span className="mx-1">|</span> {e.location} <span className="mx-1">|</span> {e.employment}</div>
+                              <div className="font-semibold text-white">{e.role}</div>
+                              <div className="text-xs text-neutral-500">{e.period}</div>
+                            </div>
+                          </div>
+                        }
+                      >
+                        <div className="text-neutral-300 text-sm leading-6">{e.details || "Details will be added soon."}</div>
+                      </AccordionItem>
+                    ))}
+                  </ul>
+                ),
+              },
+              {
+                key: "skill",
+                label: "Skill",
+                content: (
+                  <ul className="space-y-3 max-w-3xl mx-auto">
+                    {skills.map((s) => (
+                      <AccordionItem
+                        key={s.key}
+                        title={
+                          <div className="flex items-start gap-3">
+                            <s.Icon size={20} className="text-neutral-400 shrink-0" />
+                            <div>
+                              <div className="font-semibold text-white">{s.title}</div>
+                              <p className="text-sm text-neutral-400 mt-0.5">{s.desc}</p>
+                            </div>
+                          </div>
+                        }
+                      >
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {s.tags.map((t) => (
+                            <span key={t} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-xs">{t}</span>
+                          ))}
+                        </div>
+                      </AccordionItem>
+                    ))}
+                  </ul>
+                ),
+              },
+            ]}
+          />
+        </div>
       </div>
     </section>
+  );
+}
+
+function AccordionItem({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <li className="rounded border border-neutral-800">
+      <button type="button" className="w-full text-left p-4 flex items-start justify-between gap-4" onClick={() => setOpen((v) => !v)}>
+        <div className="min-w-0 flex-1">{title}</div>
+        <div className="shrink-0 text-neutral-400">{open ? <Minus size={20} /> : <Plus size={20} />}</div>
+      </button>
+      {open && <div className="px-4 pb-4">{children}</div>}
+    </li>
   );
 }
