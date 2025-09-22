@@ -5,7 +5,7 @@ import type { MediumRssItem, MediumRssResponse } from "@/types/medium";
 
 // Simple client-side fetcher for Medium RSS via rss2json
 // Replace MEDIUM_USERNAME with your Medium handle
-const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME || "wikinotes";
+const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME;
 // default page size; can be overridden by hook consumer based on device
 const DEFAULT_PAGE_SIZE = 3; // fixed per request
 

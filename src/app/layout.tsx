@@ -18,8 +18,58 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Dwiki Riyadi — Portfolio",
-  description: "Personal portfolio website of Dwiki Riyadi.",
+  metadataBase: new URL("https://dwikiriyadi.github.io"),
+  title: {
+    default: "Dwiki Riyadi | Mobile Developer",
+    template: "%s | Dwiki Riyadi",
+  },
+  description:
+    "Portfolio of Dwiki Riyadi, a mobile developer specializing in Kotlin (Android/Compose) and Flutter. Projects, articles, and experience.",
+  keywords: [
+    "Dwiki Riyadi",
+    "Mobile Developer",
+    "Android",
+    "Kotlin",
+    "Jetpack Compose",
+    "Flutter",
+    "Portfolio",
+    "Software Engineer",
+    "Jakarta",
+    "Indonesia",
+  ],
+  authors: [{ name: "Dwiki Riyadi", url: "https://dwikiriyadi.github.io" }],
+  creator: "Dwiki Riyadi",
+  openGraph: {
+    type: "website",
+    url: "https://dwikiriyadi.github.io",
+    title: "Dwiki Riyadi — Mobile Developer",
+    description:
+      "Portfolio of Dwiki Riyadi, a mobile developer specializing in Kotlin (Android/Compose) and Flutter. Projects, articles, and experience.",
+    siteName: "Dwiki Riyadi",
+    images: [
+      { url: "/logo_rounded.svg", width: 512, height: 512, alt: "Dwiki Riyadi" },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Dwiki Riyadi — Mobile Developer",
+    description:
+      "Portfolio of Dwiki Riyadi, a mobile developer specializing in Kotlin (Android/Compose) and Flutter.",
+    images: ["/logo_rounded.svg"],
+  },
+  icons: {
+    icon: "/logo_rounded.svg",
+    shortcut: "/logo_rounded.svg",
+    apple: "/logo_rounded.svg",
+  },
+  themeColor: "#212121",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

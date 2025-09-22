@@ -37,7 +37,7 @@ export default function Home() {
         <Contact />
       </main>
       <footer className="py-10 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800">
-        <div className="container text-sm text-neutral-400 flex items-center justify-end">
+        <div className="container text-sm text-neutral-400 flex items-center justify-center">
           <span>© {new Date().getFullYear()} Dwiki Riyadi</span>
         </div>
       </footer>
