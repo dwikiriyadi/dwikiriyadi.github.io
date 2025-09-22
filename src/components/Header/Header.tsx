@@ -12,6 +12,8 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopHidden, setDesktopHidden] = useState(true); // start hidden (rail on desktop)
   const [hash, setHash] = useState<string>(typeof window !== "undefined" ? window.location.hash || "#about" : "#about");
+  // Scroll progress (0..1)
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Sync hash for active nav state and close mobile on navigation
   useEffect(() => {
@@ -64,15 +66,31 @@ export default function Header() {
         if (window.matchMedia("(min-width: 768px)").matches) {
           setDesktopHidden(false);
         } else {
-          setMobileOpen(true);
-          // Auto-close after a short delay to avoid blocking content
-          setTimeout(() => setMobileOpen(false), 2500);
+          // Do not auto-open drawer on mobile; keep it hidden
         }
         window.removeEventListener("scroll", onScroll);
       }
     };
-    window.addEventListener("scroll", onScroll, { passive: true } as any);
+    window.addEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll progress calculation
+  useEffect(() => {
+    const calc = () => {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || 0;
+      const max = Math.max(0, (doc.scrollHeight || 0) - window.innerHeight);
+      const p = max > 0 ? Math.min(1, Math.max(0, scrollTop / max)) : 0;
+      setScrollProgress(p);
+    };
+    calc();
+    window.addEventListener("scroll", calc, { passive: true } as AddEventListenerOptions);
+    window.addEventListener("resize", calc);
+    return () => {
+      window.removeEventListener("scroll", calc);
+      window.removeEventListener("resize", calc);
+    };
   }, []);
 
   // Observe sections for scroll spy
@@ -82,7 +100,6 @@ export default function Header() {
       .filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
 
-    let ticking = false;
     const onIntersect: IntersectionObserverCallback = (entries) => {
       // Determine which section is the most visible
       const visible = entries
@@ -97,7 +114,6 @@ export default function Header() {
           history.replaceState(null, "", newHash);
         } catch {}
       }
-      ticking = false;
     };
 
     const observer = new IntersectionObserver(onIntersect, {
@@ -112,6 +128,15 @@ export default function Header() {
   // Mobile open button (Phosphor Sidebar icon)
   return (
     <>
+      {/* Top scroll progress bar */}
+      <div className="fixed top-0 left-0 right-0 h-0.5 z-50 pointer-events-none">
+        <div
+          className="h-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(193,35,35,0.6)]"
+          style={{ width: `${Math.round(scrollProgress * 100)}%` }}
+          aria-hidden
+        />
+      </div>
+
       {!mobileOpen && (
         <button
           aria-label="Open menu"

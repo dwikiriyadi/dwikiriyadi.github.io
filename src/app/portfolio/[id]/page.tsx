@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PORTFOLIO_ITEMS } from "@/data/portfolio";
 import type { PortfolioItem } from "@/types/portfolio";
@@ -15,8 +14,14 @@ function getItem(id: string): { item: PortfolioItem; index: number } | null {
   return { item: PORTFOLIO_ITEMS[index], index };
 }
 
-export default function Page({ params }: { params: { id: string } }) {
-  const found = getItem(params.id);
+interface PageProps {
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const found = getItem(id);
   if (!found) return notFound();
   const { item, index } = found;
   const prev = PORTFOLIO_ITEMS[(index - 1 + PORTFOLIO_ITEMS.length) % PORTFOLIO_ITEMS.length];

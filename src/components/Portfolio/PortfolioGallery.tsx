@@ -21,11 +21,13 @@ export default function PortfolioGallery({ images = [], backgroundImages = [] }:
     <div className="relative w-full h-full bg-white text-black overflow-hidden rounded-md">
       {/* Half background image overlay */}
       {bgImg && (
-        <img
+        <Image
           src={bgImg}
           alt=""
-          className="absolute left-0 top-0 w-full h-auto opacity-30 pointer-events-none select-none"
+          fill
+          className="absolute left-0 top-0 w-full h-auto opacity-30 pointer-events-none select-none object-cover"
           aria-hidden
+          priority
         />
       )}
 

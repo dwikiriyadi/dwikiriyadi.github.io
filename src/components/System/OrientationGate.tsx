@@ -61,10 +61,10 @@ export default function OrientationGate() {
     const onResize = () => evaluate();
     window.addEventListener("resize", onResize);
     // Some browsers fire orientationchange
-    window.addEventListener("orientationchange", onResize as any);
+    window.addEventListener("orientationchange", onResize as EventListener);
     return () => {
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize as any);
+      window.removeEventListener("orientationchange", onResize as EventListener);
     };
   }, []);
 
