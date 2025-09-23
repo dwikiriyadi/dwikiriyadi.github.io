@@ -21,9 +21,70 @@ html {
 body {
   font-family: var(--font-outfit), ui-sans-serif, system-ui;
   background-color: #212121;
+  /* Layered gradients for subtle depth and vignette */
+  background-image:
+    radial-gradient(1200px 600px at 20% -10%, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 60%),
+    radial-gradient(800px 400px at 110% 0%, rgba(255,255,255,0.08), transparent 60%),
+    radial-gradient(1200px 800px at 50% 120%, rgba(0,0,0,0.5), transparent 60%);
+  background-attachment: fixed, fixed, fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #ffffff;
+  /* Prevent horizontal overflow from off-canvas elements */
+  overflow-x: hidden;
   /* Enable vertical scroll snapping for full-height sections */
   scroll-snap-type: y mandatory;
+}
+
+/* Material / Origami inspired background for hero */
+.hero-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  will-change: transform;
+}
+/* Large dark paper fold */
+.hero-bg::before {
+  top: -12%;
+  left: -10%;
+  width: 140%;
+  height: 70%;
+  background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 60%, #1a1a1a 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 72% 60%, 0% 85%);
+  transform: rotate(-4deg);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.03) inset;
+  z-index: 0;
+}
+/* Accent colored paper strip using logo color */
+.hero-bg::after {
+  bottom: -12%;
+  right: -10%;
+  width: 120%;
+  height: 55%;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 85%, #000) 0%, var(--color-primary) 60%, color-mix(in srgb, var(--color-primary) 60%, #fff) 100%);
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 75%);
+  transform: rotate(-8deg);
+  opacity: 0.18; /* subtle, not overpowering */
+  box-shadow: 0 30px 70px rgba(193,35,35,0.35), 0 10px 20px rgba(0,0,0,0.35);
+  z-index: 0;
+}
+
+/* Soft paper grain for the hero to enhance material feel */
+.hero-bg::after, .hero-bg::before {
+  backdrop-filter: blur(0.2px);
+}
+
+/* Improve text readability over the artwork */
+.hero-bg .container, .hero-bg h1, .hero-bg p, .hero-bg a {
+  position: relative;
+  z-index: 1;
 }
 
 /***** Utilities *****/

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SidebarSimple, GithubLogo } from "@phosphor-icons/react";
 import { NAV_ITEMS, SECTION_IDS } from "@/data/navigation";
@@ -178,7 +179,7 @@ export default function Header() {
               aria-label={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
               title={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
             >
-              <SidebarSimple size={18} />
+              <SidebarSimple size={18} weight={desktopHidden ? "regular" : "fill"} />
             </button>
             {/* Mobile close */}
             <button
@@ -187,7 +188,7 @@ export default function Header() {
               aria-label="Close menu"
               title="Close"
             >
-              <SidebarSimple size={18} />
+              <SidebarSimple size={18} weight="fill" />
             </button>
           </div>
 
@@ -244,8 +245,10 @@ export default function Header() {
             {/* Footer with logo and GitHub link */}
             <div className={"mt-2 px-3 py-4 border-t border-neutral-800 flex items-center gap-3 justify-start " + (desktopHidden ? "md:justify-center" : "")}>
               <div className="flex items-center">
-                {/* Show logo; in rail (desktop), center; on mobile always start */}
-                <Image src="/logo_rounded.svg" alt="Logo" width={36} height={36} />
+                {/* Show logo as a link to home; in rail (desktop), center; on mobile always start */}
+                <Link href="/#home" aria-label="Go to home" onClick={() => setMobileOpen(false)} className="block">
+                  <Image src="/logo_rounded.svg" alt="Logo" width={36} height={36} className="cursor-pointer" />
+                </Link>
               </div>
               {/* Mobile: always show GitHub link when drawer is visible */}
               <a

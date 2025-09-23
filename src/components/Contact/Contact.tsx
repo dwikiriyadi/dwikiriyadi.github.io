@@ -74,11 +74,13 @@ export default function Contact() {
     }
   }
   return (
-    <section id="contact" className="md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
-      <div className="container w-full">
-        <h2 className="section-title text-center">Contact</h2>
-        <p className="text-center text-neutral-400 mt-1">Let&apos;s Connect & Collaborate</p>
-        <p className="text-neutral-300 max-w-2xl mx-auto text-center mt-4">
+    <section id="contact" className="relative overflow-hidden min-h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always">
+      {/* Light diagonal background similar to Portfolio (reversed angle) */}
+      <div className="absolute inset-0 -z-10 bg-[#FFFFFF] [clip-path:polygon(0_0,100%_6vw,100%_100%,0%_calc(100%_-_6vw))]" aria-hidden></div>
+      <div className="container w-full text-[#212121]">
+        <h2 className="section-title text-center text-[#212121]">Contact</h2>
+        <p className="text-center text-neutral-600 mt-1">Let&apos;s Connect & Collaborate</p>
+        <p className="text-neutral-700 max-w-2xl mx-auto text-center mt-4">
           <span className="text-[var(--color-primary)]">Interest in collaborating ? </span>
           I&apos;m open to collaboration, freelance projects, and speaking opportunities. Reach out via the form or connect on social media.
         </p>
@@ -89,28 +91,28 @@ export default function Contact() {
           <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
           <div>
-            <label className="block text-sm text-neutral-400 mb-1">Full Name</label>
-            <input required name="fullName" type="text" className="w-full rounded border border-neutral-800 bg-neutral-950 px-3 py-2 text-white outline-none focus:border-neutral-600" />
+            <label className="block text-sm text-neutral-600 mb-1">Full Name</label>
+            <input required name="fullName" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
           </div>
           <div>
-            <label className="block text-sm text-neutral-400 mb-1">Email</label>
-            <input required name="email" type="email" className="w-full rounded border border-neutral-800 bg-neutral-950 px-3 py-2 text-white outline-none focus:border-neutral-600" />
+            <label className="block text-sm text-neutral-600 mb-1">Email</label>
+            <input required name="email" type="email" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm text-neutral-400 mb-1">Subject</label>
-            <input required name="subject" type="text" className="w-full rounded border border-neutral-800 bg-neutral-950 px-3 py-2 text-white outline-none focus:border-neutral-600" />
+            <label className="block text-sm text-neutral-600 mb-1">Subject</label>
+            <input required name="subject" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm text-neutral-400 mb-1">Message</label>
-            <textarea required name="message" rows={5} className="w-full rounded border border-neutral-800 bg-neutral-950 px-3 py-2 text-white outline-none focus:border-neutral-600" />
+            <label className="block text-sm text-neutral-600 mb-1">Message</label>
+            <textarea required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
           </div>
           <div className="sm:col-span-2 flex items-center justify-between gap-3">
             <button type="submit" disabled={cooldown} className={`px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>
             <div className="flex items-center gap-3">
-              <span className="text-neutral-400 text-sm">Find me on</span>
+              <span className="text-neutral-600 text-sm">Find me on</span>
               <div className="flex flex-wrap gap-2 items-center">
                 {SOCIAL_LINKS.map((s) => (
-                  <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 transition-colors text-neutral-200">
+                  <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-300 hover:bg-neutral-100 hover:border-neutral-400 transition-colors text-[#212121]">
                     <s.Icon size={18} />
                   </a>
                 ))}

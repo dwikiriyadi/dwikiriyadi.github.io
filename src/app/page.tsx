@@ -11,8 +11,12 @@ export default function Home() {
       <Header />
       <main className="transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)]">
         {/* Hero - full height, centered, no logo, CTA to scroll */}
-        <section className="relative h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
-          <div className="container max-w-3xl">
+        <section className="relative min-h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
+          {/* Full-bleed hero background that extends under the sidebar on desktop */}
+          <div className="absolute inset-0 md:[margin-left:calc(var(--sidebar-width,0px)*-1)] md:[width:calc(100%+var(--sidebar-width,0px))]" aria-hidden>
+            <div className="hero-bg w-full h-full"></div>
+          </div>
+          <div className="container w-full max-w-3xl mx-auto z-10">
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
               Hi, I’m <span className="text-[var(--color-primary)]">Dwiki Riyadi</span>.
             </h1>
@@ -36,9 +40,9 @@ export default function Home() {
         <Articles />
         <Contact />
       </main>
-      <footer className="py-10 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800">
-        <div className="container text-sm text-neutral-400 flex items-center justify-center">
-          <span>© {new Date().getFullYear()} Dwiki Riyadi</span>
+      <footer className="py-4 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800 flex items-center">
+        <div className="container h-9 flex items-center text-sm text-neutral-400">
+          <span className="block text-center w-full">© {new Date().getFullYear()} Dwiki Riyadi</span>
         </div>
       </footer>
     </div>
