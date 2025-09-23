@@ -8,5 +8,5 @@ export const SITE: SiteConfig = {
   logoDark: "/logo_rounded_dark.svg",
   githubUrl: "https://github.com/dwikiriyadi",
   resumeUrl: "/Dwiki_Riyadi_Resume.pdf",
-  portfolioUrl: "/portfolio.pdf",
+  portfolioUrl: "/Dwiki_Riyadi_Portofolio.pdf",
 };
