@@ -98,20 +98,20 @@ export default function Contact() {
             <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
             <div>
-              <label className="block text-sm text-neutral-600 mb-1">Full Name</label>
-              <input required name="fullName" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+              <label htmlFor="fullName" className="block text-sm text-neutral-700 mb-1">Full Name</label>
+              <input id="fullName" required name="fullName" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-600 focus:ring-2 focus:ring-neutral-300" />
             </div>
             <div>
-              <label className="block text-sm text-neutral-600 mb-1">Email</label>
-              <input required name="email" type="email" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+              <label htmlFor="email" className="block text-sm text-neutral-700 mb-1">Email</label>
+              <input id="email" required name="email" type="email" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-600 focus:ring-2 focus:ring-neutral-300" />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm text-neutral-600 mb-1">Subject</label>
-              <input required name="subject" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+              <label htmlFor="subject" className="block text-sm text-neutral-700 mb-1">Subject</label>
+              <input id="subject" required name="subject" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-600 focus:ring-2 focus:ring-neutral-300" />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm text-neutral-600 mb-1">Message</label>
-              <textarea required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+              <label htmlFor="message" className="block text-sm text-neutral-700 mb-1">Message</label>
+              <textarea id="message" required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-600 focus:ring-2 focus:ring-neutral-300" />
             </div>
             <div className="sm:col-span-2 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
               <button type="submit" disabled={cooldown} className={`w-full sm:w-auto px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>

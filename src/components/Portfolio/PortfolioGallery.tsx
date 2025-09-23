@@ -75,7 +75,7 @@ export default function PortfolioGallery({ images = [], backgroundImages = [] }:
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center h-full text-neutral-500">No images</div>
+          <div className="flex items-center justify-center h-full text-neutral-700">No images</div>
         )}
       </div>
     </div>
