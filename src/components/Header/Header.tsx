@@ -141,7 +141,7 @@ export default function Header() {
       {!mobileOpen && (
         <button
           aria-label="Open menu"
-          className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-800"
+          className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-700"
           onClick={() => setMobileOpen(true)}
         >
           <SidebarSimple size={22} weight="regular" />
@@ -152,7 +152,7 @@ export default function Header() {
       <aside
         className={
           [
-            "fixed top-0 left-0 z-40 h-[var(--app-height,100vh)] bg-[var(--color-secondary)] text-white border-r border-neutral-800",
+            "fixed top-0 left-0 z-40 h-[var(--app-height,100vh)] bg-[var(--color-secondary)] text-white border-r border-neutral-700",
             // Mobile slide in/out
             mobileOpen ? "translate-x-0 w-64" : "-translate-x-full w-64",
             // Desktop pinned; we avoid translate to keep it visible as rail
@@ -165,7 +165,7 @@ export default function Header() {
         {/* Wrapper that adapts width on desktop via CSS var */}
         <div className="h-full flex flex-col" style={{ width: "var(--sidebar-width)" }}>
           {/* Header inside drawer */}
-          <div className="px-3 pt-5 pb-4 border-b border-neutral-800 flex items-start justify-between gap-2">
+          <div className="px-3 pt-5 pb-4 border-b border-neutral-700 flex items-start justify-between gap-2">
             {/* Name and role (hide in rail) */}
             <div className={"min-w-0 " + (desktopHidden ? "md:hidden" : "")}>
               <div className="text-lg font-semibold">Dwiki Riyadi</div>
@@ -243,7 +243,7 @@ export default function Header() {
             </nav>
 
             {/* Footer with logo and GitHub link */}
-            <div className={"mt-2 px-3 py-4 border-t border-neutral-800 flex items-center gap-3 justify-start " + (desktopHidden ? "md:justify-center" : "")}>
+            <div className={"mt-2 px-3 py-4 border-t border-neutral-700 flex items-center gap-3 justify-start " + (desktopHidden ? "md:justify-center" : "")}>
               <div className="flex items-center">
                 {/* Show logo as a link to home; in rail (desktop), center; on mobile always start */}
                 <Link href="/#home" aria-label="Go to home" onClick={() => setMobileOpen(false)} className="block">

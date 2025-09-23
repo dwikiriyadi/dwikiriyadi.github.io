@@ -49,7 +49,7 @@ export default function Articles() {
                     href={a.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-4 border border-neutral-800 rounded hover:bg-neutral-900/50 hover:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#C12323] transition-colors"
+                    className="block p-4 border border-neutral-700 rounded hover:bg-neutral-900/50 hover:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#C12323] transition-colors"
                   >
                     <h3 className="font-medium text-white">{a.title}</h3>
                     <div className="text-sm text-neutral-500 mt-1">{new Date(a.pubDate).toLocaleDateString()}</div>
@@ -63,10 +63,10 @@ export default function Articles() {
 
         {/* Controls at bottom */}
         <div ref={controlsRef} className="mt-4 flex items-center justify-center gap-2">
-          <button onClick={prev} disabled={!hasPrev} aria-label="Previous" className={`p-2 rounded-full border ${hasPrev ? "border-neutral-700 hover:bg-neutral-800" : "opacity-50 cursor-not-allowed border-neutral-800"}`}>
+          <button onClick={prev} disabled={!hasPrev} aria-label="Previous" className={`p-2 rounded-full border ${hasPrev ? "border-neutral-700 hover:bg-neutral-800" : "opacity-50 cursor-not-allowed border-neutral-700"}`}>
             <CaretLeft size={20} />
           </button>
-          <button onClick={next} disabled={!hasNext} aria-label="Next" className={`p-2 rounded-full border ${hasNext ? "border-neutral-700 hover:bg-neutral-800" : "opacity-50 cursor-not-allowed border-neutral-800"}`}>
+          <button onClick={next} disabled={!hasNext} aria-label="Next" className={`p-2 rounded-full border ${hasNext ? "border-neutral-700 hover:bg-neutral-800" : "opacity-50 cursor-not-allowed border-neutral-700"}`}>
             <CaretRight size={20} />
           </button>
           <span className="ml-3 text-sm text-neutral-500">Page {page}</span>

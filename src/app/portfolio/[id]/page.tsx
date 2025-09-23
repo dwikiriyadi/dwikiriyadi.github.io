@@ -56,7 +56,7 @@ export default async function Page({ params }: PageProps) {
                     key={l.href}
                     href={l.href}
                     target="_blank"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded border border-neutral-800 text-neutral-100 hover:border-neutral-700 hover:bg-neutral-800/40"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded border border-neutral-700 text-neutral-100 hover:border-neutral-600 hover:bg-neutral-800/40"
                   >
                     {l.label}
                   </Link>
@@ -76,10 +76,10 @@ export default async function Page({ params }: PageProps) {
       <div className="fixed bottom-4 inset-x-0">
         <div className="container">
           <div className="flex items-center justify-between gap-4">
-            <Link href={`/portfolio/${prev.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded bg-neutral-900/70 backdrop-blur border border-neutral-800 hover:bg-neutral-900 text-neutral-100">
+            <Link href={`/portfolio/${prev.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded bg-neutral-900/70 backdrop-blur border border-neutral-700 hover:bg-neutral-900 text-neutral-100">
               <span aria-hidden>←</span> Previous
             </Link>
-            <Link href={`/portfolio/${next.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded bg-neutral-900/70 backdrop-blur border border-neutral-800 hover:bg-neutral-900 text-neutral-100">
+            <Link href={`/portfolio/${next.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded bg-neutral-900/70 backdrop-blur border border-neutral-700 hover:bg-neutral-900 text-neutral-100">
               Next <span aria-hidden>→</span>
             </Link>
           </div>

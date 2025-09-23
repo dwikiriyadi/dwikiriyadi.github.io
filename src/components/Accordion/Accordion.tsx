@@ -21,7 +21,7 @@ export interface AccordionItemProps {
 export function AccordionItem({ title, children, defaultOpen = false }: AccordionItemProps) {
   const [open, setOpen] = useState<boolean>(defaultOpen);
   return (
-    <li className="rounded border border-neutral-800">
+    <li className="rounded border border-neutral-700">
       <button
         type="button"
         className="w-full text-left p-4 flex items-center justify-between gap-4"

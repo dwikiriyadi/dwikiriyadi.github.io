@@ -3,7 +3,7 @@ import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: "1",
-    title: "JSON UI (Flutter)",
+    title: "JSON UI",
     description: `
         Json UI Flutter is a small experimental library that turns JSON into Flutter widgets. The goal was to validate a concept: could we describe UI with a portable schema and render it dynamically in Flutter? This work was inspired by a Kotlin-based UI generator I previously built using collections and data classes.
 
@@ -30,7 +30,10 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
         icon: "medium",
       },
     ],
+    // Backward compat: keep single category for any consumers still using it
     category: "Library",
+    // New multi-category field
+    categories: ["Library", "Flutter"],
   },
   {
     id: "2",
@@ -116,7 +119,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     id: "6",
-    title: "Sistem Antrian Online untuk Poli di RSUD dr.Abdul Azis Singkawang",
+    title: "Sistem Antrian Online",
     description: `
     I was asked to develop a Flutter-based queue application for a hospital polyclinic. The system uses a publish/subscribe mechanism so queue numbers update in real time across devices and displays. Patients can register remotely, obtain a digital queue ticket, and monitor their position from home without waiting on-site.
 
