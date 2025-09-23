@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Tab from "@/components/Tab/Tab";
-import type { PortfolioItem } from "@/types/portfolio";
+import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
 import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from "@/data/portfolio";
 import { useEffect, useRef, useState } from "react";
 
@@ -127,7 +127,7 @@ export default function Portfolio() {
           items={PORTFOLIO_CATEGORIES.map((cat) => ({
             key: cat,
             label: cat,
-            content: <Carousel data={cat === "All" ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter((i) => (i.categories ? i.categories.includes(cat as any) : i.category === cat))} />,
+            content: <Carousel data={cat === "All" ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter((i) => (i.categories ? i.categories.includes(cat as PortfolioCategory) : i.category === cat))} />,
           }))}
         />
       </div>
