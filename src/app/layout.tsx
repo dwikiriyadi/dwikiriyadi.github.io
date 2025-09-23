@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Fira_Code } from "next/font/google";
 import "./globals.css";
 import AppHeight from "@/components/System/AppHeight";
@@ -62,7 +62,6 @@ export const metadata: Metadata = {
     shortcut: "/logo_rounded.svg",
     apple: "/logo_rounded.svg",
   },
-  themeColor: "#212121",
   alternates: {
     canonical: "/",
   },
@@ -70,6 +69,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#212121",
 };
 
 export default function RootLayout({
