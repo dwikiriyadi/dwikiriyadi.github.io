@@ -179,7 +179,7 @@ export default function Header() {
               aria-label={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
               title={desktopHidden ? "Expand sidebar" : "Collapse to rail"}
             >
-              <SidebarSimple size={18} />
+              <SidebarSimple size={18} weight={desktopHidden ? "regular" : "fill"} />
             </button>
             {/* Mobile close */}
             <button
@@ -188,7 +188,7 @@ export default function Header() {
               aria-label="Close menu"
               title="Close"
             >
-              <SidebarSimple size={18} />
+              <SidebarSimple size={18} weight="fill" />
             </button>
           </div>
 

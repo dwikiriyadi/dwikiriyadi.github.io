@@ -11,8 +11,8 @@ export default function Home() {
       <Header />
       <main className="transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)]">
         {/* Hero - full height, centered, no logo, CTA to scroll */}
-        <section className="relative min-h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
-          <div className="container max-w-3xl">
+        <section className="hero-bg relative min-h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
+          <div className="container max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
               Hi, I’m <span className="text-[var(--color-primary)]">Dwiki Riyadi</span>.
             </h1>
@@ -38,7 +38,7 @@ export default function Home() {
       </main>
       <footer className="py-4 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800 flex items-center">
         <div className="container h-9 flex items-center text-sm text-neutral-400">
-          <span className="block text-start">© {new Date().getFullYear()} Dwiki Riyadi</span>
+          <span className="block text-center w-full">© {new Date().getFullYear()} Dwiki Riyadi</span>
         </div>
       </footer>
     </div>
