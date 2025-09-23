@@ -32,6 +32,46 @@ Tech highlights:
   - Logo: public/logo.svg (provided). You can replace with your own logo file and update src/components/Header/Header.tsx if needed.
   - Portfolio images live in public/images.
 
+## Customize and Reuse as a Template
+
+You can quickly adapt this codebase for your own portfolio with minimal changes.
+
+1) Portfolio data
+   - Duplicate src/data/portfolio.template.ts to src/data/portfolio.ts
+   - Follow the inline comments to add your projects.
+   - Place screenshots in public/portfolio/<your_project>/ ... (absolute paths starting with "/" or relative paths work)
+
+2) About section
+   - Duplicate src/data/about.template.ts to src/data/about.ts
+   - Edit OVERVIEW_TEXT, EXPERIENCES, and SKILLS. Icons come from @phosphor-icons/react and can be changed.
+
+3) Site-wide config (Header, logos, downloads)
+   - Duplicate src/data/site.template.ts to src/data/site.ts
+   - Update your name, role, short brand, logo paths, GitHub URL, and the resume/portfolio PDF paths.
+   - Header, mobile brand, and About download links read from this file.
+
+4) Social links
+   - Edit src/data/socials.ts to add/remove social profiles. These render in the Contact section.
+
+5) Navigation
+   - Edit src/data/navigation.ts to adjust section labels or order. SECTION_IDS controls scroll-spy.
+
+6) Medium articles
+   - Option A: set NEXT_PUBLIC_MEDIUM_USERNAME in .env.local (e.g. echo "NEXT_PUBLIC_MEDIUM_USERNAME=your_handle" >> .env.local)
+   - Option B: duplicate src/data/articles.template.ts to src/data/articles.ts and set mediumUsername or rssUrl there.
+   - Articles component paginates client-side and will read from your Medium feed.
+
+7) Contact form
+   - Option A: set NEXT_PUBLIC_FORMSUBMIT_ENDPOINT in .env.local (e.g. echo "NEXT_PUBLIC_FORMSUBMIT_ENDPOINT=https://formsubmit.co/ajax/you@example.com" >> .env.local)
+   - Option B: duplicate src/data/contact.template.ts to src/data/contact.ts and set formEndpoint, messages, or disable the form (enabled: false).
+   - Social links are controlled via src/data/socials.ts.
+
+8) Run locally
+
+   npm run dev
+
+Open http://localhost:3000 and verify your About, Portfolio, Articles, and Contact sections.
+
 ## Project Structure
 
 - src/app

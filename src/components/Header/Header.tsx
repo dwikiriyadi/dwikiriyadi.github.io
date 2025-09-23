@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SidebarSimple, GithubLogo } from "@phosphor-icons/react";
 import { NAV_ITEMS, SECTION_IDS } from "@/data/navigation";
+import { SITE } from "@/data/site";
 
 const EXPANDED_WIDTH = "16rem"; // 256px
 const RAIL_WIDTH = "4.5rem"; // 72px
@@ -152,8 +153,8 @@ export default function Header() {
             aria-label="Go to home"
             className="md:hidden fixed top-3 right-3 z-50 p-2 inline-flex items-center gap-2"
           >
-            <span className={(hash === "#portfolio" || hash === "#contact") ? "text-[#212121] text-sm font-semibold tracking-wide" : "text-white text-sm font-semibold tracking-wide"}>DWKRYD</span>
-            <Image src={(hash === "#portfolio" || hash === "#contact") ? "/logo_rounded_dark.svg" : "/logo_rounded.svg"} alt="Logo" width={22} height={22} />
+            <span className={(hash === "#portfolio" || hash === "#contact") ? "text-[#212121] text-sm font-semibold tracking-wide" : "text-white text-sm font-semibold tracking-wide"}>{SITE.shortName || "DWKRYD"}</span>
+            <Image src={(hash === "#portfolio" || hash === "#contact") ? (SITE.logoDark || "/logo_rounded_dark.svg") : (SITE.logoLight || "/logo_rounded.svg")} alt="Logo" width={22} height={22} />
           </Link>
         </>
       )}
@@ -178,8 +179,8 @@ export default function Header() {
           <div className="px-3 pt-5 pb-4 border-b border-neutral-700 flex items-start justify-between gap-2">
             {/* Name and role (hide in rail) */}
             <div className={"min-w-0 " + (desktopHidden ? "md:hidden" : "")}>
-              <div className="text-lg font-semibold">Dwiki Riyadi</div>
-              <div className="text-sm text-neutral-400">Mobile Developer</div>
+              <div className="text-lg font-semibold">{SITE.name}</div>
+              <div className="text-sm text-neutral-400">{SITE.role}</div>
             </div>
             {/* Toggle button on the right using Phosphor icon */}
             <button
@@ -257,12 +258,12 @@ export default function Header() {
               <div className="flex items-center">
                 {/* Show logo as a link to home; in rail (desktop), center; on mobile always start */}
                 <Link href="/#home" aria-label="Go to home" onClick={() => setMobileOpen(false)} className="block">
-                  <Image src="/logo_rounded.svg" alt="Logo" width={36} height={36} className="cursor-pointer" />
+                  <Image src={SITE.logoLight || "/logo_rounded.svg"} alt="Logo" width={36} height={36} className="cursor-pointer" />
                 </Link>
               </div>
               {/* Mobile: always show GitHub link when drawer is visible */}
               <a
-                href="https://github.com/dwikiriyadi"
+                href={SITE.githubUrl || "https://github.com/dwikiriyadi"}
                 target="_blank"
                 className="inline-flex items-center gap-2 text-[#9A9A9A] md:hidden"
                 aria-label="GitHub"
@@ -273,7 +274,7 @@ export default function Header() {
               {/* Desktop: show GitHub only when expanded */}
               {!desktopHidden && (
                 <a
-                  href="https://github.com/dwikiriyadi"
+                  href={SITE.githubUrl || "https://github.com/dwikiriyadi"}
                   target="_blank"
                   className="hidden md:inline-flex items-center gap-2 text-[#9A9A9A]"
                   aria-label="GitHub"

@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { SOCIAL_LINKS } from "@/data/socials";
+import { CONTACT } from "@/data/contact";
 
 interface Toast {
   type: "success" | "error";
@@ -35,9 +36,9 @@ export default function Contact() {
     const subject = String(data.get("subject") || "").trim() || `New request from ${fullName || "your website"}`;
     const message = String(data.get("message") || "");
 
-    const endpoint = process.env.NEXT_PUBLIC_FORMSUBMIT_ENDPOINT; // e.g. https://formsubmit.co/ajax/youremail@example.com
+    const endpoint = CONTACT.formEndpoint || process.env.NEXT_PUBLIC_FORMSUBMIT_ENDPOINT; // e.g. https://formsubmit.co/ajax/youremail@example.com
     if (!endpoint) {
-      showToast("FormSubmit is not configured. Please set NEXT_PUBLIC_FORMSUBMIT_ENDPOINT.", "error");
+      showToast("FormSubmit is not configured. Please set it in src/data/contact.ts or NEXT_PUBLIC_FORMSUBMIT_ENDPOINT.", "error");
       return;
     }
 
@@ -64,15 +65,16 @@ export default function Contact() {
         throw new Error(`FormSubmit request failed: ${res.status}`);
       }
 
-      showToast("Message sent successfully. Thank you!", "success");
+      showToast(CONTACT.successMessage || "Message sent successfully. Thank you!", "success");
       (e.target as HTMLFormElement).reset(); // clear the form after success
     } catch (err) {
       console.error(err);
-      showToast("Failed to send message. Please try again.", "error");
+      showToast(CONTACT.errorMessage || "Failed to send message. Please try again.", "error");
     } finally {
       setTimeout(() => setCooldown(false), 1200);
     }
   }
+  const isFormEnabled = CONTACT.enabled !== false;
   return (
     <section id="contact" className="relative overflow-hidden md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
       {/* Light background with only top diagonal cut (no bottom diagonal) to mirror Portfolio style */}
@@ -90,40 +92,46 @@ export default function Contact() {
         </p>
 
         {/* Contact form */}
-        <form ref={formRef} onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-          {/* Honeypot */}
-          <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+        {isFormEnabled ? (
+          <form ref={formRef} onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            {/* Honeypot */}
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-          <div>
-            <label className="block text-sm text-neutral-600 mb-1">Full Name</label>
-            <input required name="fullName" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
-          </div>
-          <div>
-            <label className="block text-sm text-neutral-600 mb-1">Email</label>
-            <input required name="email" type="email" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
-          </div>
-          <div className="sm:col-span-2">
-            <label className="block text-sm text-neutral-600 mb-1">Subject</label>
-            <input required name="subject" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
-          </div>
-          <div className="sm:col-span-2">
-            <label className="block text-sm text-neutral-600 mb-1">Message</label>
-            <textarea required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
-          </div>
-          <div className="sm:col-span-2 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <button type="submit" disabled={cooldown} className={`w-full sm:w-auto px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>
-            <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-3">
-              <span className="text-neutral-600 text-sm text-center sm:text-left">Find me on</span>
-              <div className="flex flex-wrap gap-2 items-center justify-center sm:justify-start">
-                {SOCIAL_LINKS.map((s) => (
-                  <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-300 hover:bg-neutral-100 hover:border-neutral-400 transition-colors text-[#212121]">
-                    <s.Icon size={18} />
-                  </a>
-                ))}
+            <div>
+              <label className="block text-sm text-neutral-600 mb-1">Full Name</label>
+              <input required name="fullName" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+            </div>
+            <div>
+              <label className="block text-sm text-neutral-600 mb-1">Email</label>
+              <input required name="email" type="email" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="block text-sm text-neutral-600 mb-1">Subject</label>
+              <input required name="subject" type="text" className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="block text-sm text-neutral-600 mb-1">Message</label>
+              <textarea required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
+            </div>
+            <div className="sm:col-span-2 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <button type="submit" disabled={cooldown} className={`w-full sm:w-auto px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>
+              <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-3">
+                <span className="text-neutral-600 text-sm text-center sm:text-left">Find me on</span>
+                <div className="flex flex-wrap gap-2 items-center justify-center sm:justify-start">
+                  {SOCIAL_LINKS.map((s) => (
+                    <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-300 hover:bg-neutral-100 hover:border-neutral-400 transition-colors text-[#212121]">
+                      <s.Icon size={18} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
+          </form>
+        ) : (
+          <div className="mt-8 max-w-2xl mx-auto text-center text-neutral-700">
+            The contact form is currently disabled. Please reach out via social links below.
           </div>
-        </form>
+        )}
       </div>
 
       {/* Floating toast notification */}

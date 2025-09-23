@@ -1,3 +1,6 @@
+// About data source
+// Tip: To create your own data file from scratch, copy src/data/about.template.ts to src/data/about.ts
+// and follow the inline comments inside the template.
 import {
   DeviceMobile,
   SquaresFour,

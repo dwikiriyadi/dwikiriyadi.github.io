@@ -2,10 +2,11 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ArticleItem } from "@/types/article";
 import type { MediumRssItem, MediumRssResponse } from "@/types/medium";
+import { ARTICLES } from "@/data/articles";
 
 // Simple client-side fetcher for Medium RSS via rss2json
-// Replace MEDIUM_USERNAME with your Medium handle
-const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME;
+// Username is read from data config first, then env var as fallback
+const ENV_MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME;
 // default page size; can be overridden by hook consumer based on device
 const DEFAULT_PAGE_SIZE = 3; // fixed per request
 
@@ -35,9 +36,15 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
       setLoading(true);
       setError(undefined);
       try {
-        const rssUrl = encodeURIComponent(
-          `https://medium.com/feed/@${MEDIUM_USERNAME}`,
-        );
+        const rss = ARTICLES.rssUrl
+          ? ARTICLES.rssUrl
+          : ARTICLES.mediumUsername || ENV_MEDIUM_USERNAME
+          ? `https://medium.com/feed/@${ARTICLES.mediumUsername || ENV_MEDIUM_USERNAME}`
+          : undefined;
+        if (!rss) {
+          throw new Error("Medium username is not configured. Set it in src/data/articles.ts or NEXT_PUBLIC_MEDIUM_USERNAME.");
+        }
+        const rssUrl = encodeURIComponent(rss);
         const res = await fetch(
           `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`,
         );

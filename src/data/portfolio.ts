@@ -1,3 +1,6 @@
+// Portfolio data source
+// Tip: To create your own data file from scratch, copy src/data/portfolio.template.ts to src/data/portfolio.ts
+// and follow the inline comments.
 import type { PortfolioItem, PortfolioCategory } from "@/types/portfolio";
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [

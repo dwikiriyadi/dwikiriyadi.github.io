@@ -4,6 +4,7 @@ import Tab from "@/components/Tab/Tab";
 import { Briefcase, X, DownloadSimple } from "@phosphor-icons/react";
 import { OVERVIEW_TEXT, EXPERIENCES, SKILLS } from "@/data/about";
 import AccordionItem from "@/components/Accordion/Accordion";
+import { SITE } from "@/data/site";
 
 export default function About() {
   const [activeKey, setActiveKey] = useState<string>("overview");
@@ -66,11 +67,11 @@ export default function About() {
                               </button>
                             </div>
                             <div className="mt-4 space-y-3">
-                              <a href="/Dwiki_Riyadi_Resume.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
+                              <a href={SITE.resumeUrl || "/Dwiki_Riyadi_Resume.pdf"} download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
                                 <span className="text-neutral-100">Resume (PDF)</span>
                                 <span className="text-xs text-neutral-500">.pdf</span>
                               </a>
-                              <a href="/portfolio.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
+                              <a href={SITE.portfolioUrl || "/portfolio.pdf"} download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
                                 <span className="text-neutral-100">Portfolio (PDF)</span>
                                 <span className="text-xs text-neutral-500">.pdf</span>
                               </a>
