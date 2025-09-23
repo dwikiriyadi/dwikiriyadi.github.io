@@ -78,9 +78,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
       <body
-        className={`${outfit.variable} ${firaCode.variable} antialiased bg-[#212121] text-white`}
+        className={`${outfit.variable} ${firaCode.variable} antialiased bg-[#212121] text-white overflow-x-hidden`}
       >
         {/* Set a consistent app-height CSS variable across devices */}
         <AppHeight />

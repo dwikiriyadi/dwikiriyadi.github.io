@@ -36,9 +36,9 @@ export default function Home() {
         <Articles />
         <Contact />
       </main>
-      <footer className="py-10 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800">
-        <div className="container text-sm text-neutral-400 flex items-center justify-center">
-          <span>© {new Date().getFullYear()} Dwiki Riyadi</span>
+      <footer className="py-4 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800 flex items-center">
+        <div className="container h-9 flex items-center text-sm text-neutral-400">
+          <span className="block text-start">© {new Date().getFullYear()} Dwiki Riyadi</span>
         </div>
       </footer>
     </div>

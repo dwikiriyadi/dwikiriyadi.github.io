@@ -69,8 +69,10 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="min-h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always bg-[#FFFFFF] text-[#212121]">
-      <div className="container w-full">
+    <section id="portfolio" className="relative overflow-hidden min-h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always">
+      {/* Diagonal white background to create angled cuts with the dark surrounding sections */}
+      <div className="absolute inset-0 -z-10 bg-[#FFFFFF] [clip-path:polygon(0_6vw,100%_0,100%_calc(100%_-_6vw),0%_100%)]" aria-hidden></div>
+      <div className="container w-full text-[#212121]">
         <h2 className="section-title text-center text-[#212121]">Portfolio</h2>
         <p className="text-center text-[#212121] mt-1">A Collection of My Work</p>
         <Tab
