@@ -74,7 +74,7 @@ export default function Contact() {
     }
   }
   return (
-    <section id="contact" className="md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
+    <section id="contact" className="min-h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always">
       <div className="container w-full">
         <h2 className="section-title text-center">Contact</h2>
         <p className="text-center text-neutral-400 mt-1">Let&apos;s Connect & Collaborate</p>

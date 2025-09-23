@@ -29,7 +29,7 @@ export default function Articles() {
   const { items, page, hasPrev, hasNext, prev, next, loading, error } = useMediumArticles(pageSize);
 
   return (
-    <section id="articles" className="h-[var(--app-height,100vh)] py-16 scroll-mt-16 relative snap-start snap-always">
+    <section id="articles" className="min-h-[var(--app-height,100vh)] py-16 scroll-mt-16 md:scroll-mt-2 relative snap-start snap-always flex items-center">
       <div ref={containerRef} className="container h-full flex flex-col">
         {/* Header at top */}
         <div ref={headerRef} className="text-center">

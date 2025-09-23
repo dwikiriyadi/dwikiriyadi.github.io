@@ -9,7 +9,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
         In this exploration, I focused on a clear JSON structure, a minimal but extensible widget registry, and predictable layout behavior. I also wrote an article to document the approach, trade‑offs, and next steps, including how this concept might evolve into a production‑ready renderer with validation and schema tooling.
         `,
-    image: "portofolio/json_ui_flutter/bg.png",
+    image: "portofolio/json_ui_flutter/image-1.png",
     images: [
       "portofolio/json_ui_flutter/image-1.png",
       "portofolio/json_ui_flutter/image-2.png",
@@ -40,7 +40,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
     The work included responsive design considerations, cleaner content hierarchy, and a modular component approach so future pages could be added without redesigning from scratch. The end result was a more cohesive and maintainable website.
     `,
-    image: "portofolio/bat_solution/bg.png",
+    image: "portofolio/bat_solution/image-1.png",
     images: ["portofolio/bat_solution/image-1.png"],
     backgroundImages: ["portofolio/bat_solution/bg.png"],
     company: "Borneo Algorithm Technology",
@@ -57,7 +57,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
     The outcome was a much clearer mental model for Flutter architecture and a stronger sense of when to choose simplicity over abstraction. It also taught me how to evaluate libraries pragmatically rather than theoretically.
     `,
-    image: "portofolio/amigo_member/bg.png",
+    image: "portofolio/amigo_member/image-1.png",
     images: [
       "portofolio/amigo_member/image-1.png",
       "portofolio/amigo_member/image-2.png",
@@ -83,7 +83,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
     The work included navigation and state handling across modules, a scalable theming system, and patterns for complex forms and lists. Lessons learned from earlier iterations directly informed the design of reusable UI primitives and data flows.
     `,
-    image: "portofolio/logee/bg.png",
+    image: "portofolio/logee/image-1.png",
     images: [
       "portofolio/logee/image-1.png",
       "portofolio/logee/image-2.png",
@@ -103,7 +103,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
     I also experimented heavily with Jetpack Compose—building a set of reusable UI components, improving state management patterns, and standardizing UI behavior. These learnings laid the groundwork for the component library later reused in the next iteration of the app.
     `,
-    image: "portofolio/logee_order/bg.png",
+    image: "portofolio/logee_order/image-1.png",
     images: [
       "portofolio/logee_order/image-1.png",
       "portofolio/logee_order/image-2.png",
@@ -122,7 +122,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
     The project involved designing a simple, reliable flow for registration, validation, and status updates, along with clear UI feedback to reduce confusion at peak hours. Real-time updates significantly improved transparency and reduced perceived waiting time.
     `,
-    image: "portofolio/rsud_queue/bg.png",
+    image: "portofolio/rsud_queue/image-1.png",
     images: [
       "portofolio/rsud_queue/image-1.png",
       "portofolio/rsud_queue/image-2.png",
@@ -143,7 +143,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
      This project taught me how to translate a static design into a maintainable frontend, organize components for reuse, and make pragmatic choices about animation and performance on low‑end devices.
      `,
-    image: "portofolio/bit_studio/bg.png",
+    image: "portofolio/bit_studio/image-1.png",
     images: [
       "portofolio/bit_studio/image-1.png",
       "portofolio/bit_studio/image-2.png",

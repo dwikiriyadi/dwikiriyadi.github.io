@@ -33,7 +33,7 @@ export default function About() {
   }, [activeKey]);
 
   return (
-    <section id="about" className="py-16 scroll-mt-16 snap-start snap-always">
+    <section id="about" className="min-h-[var(--app-height,100vh)] py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always flex items-center">
       <div className="container w-full">
         <h2 className="section-title text-center">About Myself</h2>
         {subtitle && <p className="text-center text-neutral-400 mt-1">{subtitle}</p>}

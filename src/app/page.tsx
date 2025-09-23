@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <main className="transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)]">
         {/* Hero - full height, centered, no logo, CTA to scroll */}
-        <section className="relative h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
+        <section className="relative min-h-[var(--app-height,100vh)] flex items-center justify-center text-center px-4 snap-start snap-always">
           <div className="container max-w-3xl">
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
               Hi, I’m <span className="text-[var(--color-primary)]">Dwiki Riyadi</span>.
