@@ -26,7 +26,7 @@ export default function PortfolioGallery({ images = [], backgroundImages = [] }:
           src={bgImg}
           alt=""
           fill
-          className="absolute left-0 top-0 w-full h-auto opacity-30 pointer-events-none select-none object-cover"
+          className="absolute left-0 top-0 w-full h-auto pointer-events-none select-none object-cover"
           aria-hidden
           priority
         />

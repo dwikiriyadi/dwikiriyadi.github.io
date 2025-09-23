@@ -56,14 +56,15 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
     <div className="relative -mx-[calc(50vw-50%)] w-screen max-w-[100vw]">
       <div
         ref={scrollerRef}
-        className="carousel overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-4 pl-4 sm:pl-6 pr-24 pb-16"
+        className="carousel overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-4 py-16"
         aria-label="Portfolio items carousel"
+        style={{ paddingInline: "var(--sidebar-width)" }}
       >
         {data.map((it) => (
           <Link
             key={it.id}
             href={`/portfolio/${it.id}`}
-            className="group w-[320px] sm:w-[400px] lg:w-[480px] flex-none snap-start rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+            className="group w-full sm:w-[400px] lg:w-[480px] flex-none snap-center md:snap-start rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             <div className="aspect-[4/3] relative">
               <Image src={it.image?.startsWith("/") ? it.image : `/${it.image}`} alt={it.title} fill sizes="(max-width:768px) 90vw, 480px" className="object-contain transition-transform duration-300 ease-out group-hover:scale-105" />
