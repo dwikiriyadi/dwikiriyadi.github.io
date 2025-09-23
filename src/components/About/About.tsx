@@ -55,7 +55,7 @@ export default function About() {
                       {showDownload && (
                         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
                           <div className="absolute inset-0 bg-black/60" onClick={() => setShowDownload(false)} />
-                          <div className="absolute inset-x-0 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[420px] rounded-t-2xl md:rounded-xl bg-neutral-900 border border-neutral-800 p-4 shadow-xl">
+                          <div className="absolute inset-x-0 bottom-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[420px] rounded-t-2xl md:rounded-xl bg-neutral-900 border border-neutral-700 p-4 shadow-xl">
                             <div className="flex items-center justify-between">
                               <div>
                                 <h3 className="text-white font-semibold">Choose file to download</h3>
@@ -66,11 +66,11 @@ export default function About() {
                               </button>
                             </div>
                             <div className="mt-4 space-y-3">
-                              <a href="/Dwiki_Riyadi_Resume.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50">
+                              <a href="/Dwiki_Riyadi_Resume.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
                                 <span className="text-neutral-100">Resume (PDF)</span>
                                 <span className="text-xs text-neutral-500">.pdf</span>
                               </a>
-                              <a href="/portfolio.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50">
+                              <a href="/portfolio.pdf" download className="flex items-center justify-between p-3 rounded border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800/50">
                                 <span className="text-neutral-100">Portfolio (PDF)</span>
                                 <span className="text-xs text-neutral-500">.pdf</span>
                               </a>
@@ -92,7 +92,7 @@ export default function About() {
                         key={idx}
                         title={
                           <div className="flex items-center gap-3">
-                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0">
+                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center shrink-0">
                               <Briefcase size={24} className="text-neutral-400" />
                             </div>
                             <div>
@@ -103,7 +103,7 @@ export default function About() {
                           </div>
                         }
                       >
-                        <div className="text-neutral-300 text-sm leading-6 whitespace-pre-line">{e.details || "Details will be added soon."}</div>
+                        <div className="text-neutral-300 text-sm leading-6 whitespace-pre-line pl-[4.75rem]">{e.details || "Details will be added soon."}</div>
                       </AccordionItem>
                     ))}
                   </ul>
@@ -116,16 +116,16 @@ export default function About() {
                   <div>
                     <ul className="grid grid-cols-1 gap-2 md:grid-cols-5">
                       {SKILLS.map((s) => (
-                        <li key={s.key} className="rounded border border-neutral-800 p-4 h-full">
+                        <li key={s.key} className="rounded border border-neutral-700 p-4 h-full">
                           <div className="flex flex-col items-center text-center gap-3">
-                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0">
+                            <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center shrink-0">
                               <s.Icon size={24} className="text-neutral-400" />
                             </div>
                             <div>
-                              <div className="font-semibold text-white">{s.title}</div>
-                              <p className="text-sm text-neutral-400 mt-0.5">{s.desc}</p>
+                              <div className="font-semibold text-white text-base leading-6 min-h-[3rem] clamp-2">{s.title}</div>
+                              <p className="text-sm text-neutral-400 mt-2">{s.desc}</p>
                             </div>
-                            <div className="mt-3 flex flex-wrap justify-center gap-2">
+                            <div className="mt-4 flex flex-wrap justify-center gap-2">
                               {s.tags.map((t) => (
                                 <span key={t} className="px-3 py-1 rounded-full bg-neutral-800 text-neutral-100 text-xs">{t}</span>
                               ))}

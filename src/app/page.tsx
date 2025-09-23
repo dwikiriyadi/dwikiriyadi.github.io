@@ -40,8 +40,8 @@ export default function Home() {
         <Articles />
         <Contact />
       </main>
-      <footer className="py-4 border-t mt-10 transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-800 flex items-center">
-        <div className="container h-9 flex items-center text-sm text-neutral-400">
+      <footer className="py-4 border-t transition-[padding] duration-300 md:pl-[var(--sidebar-width,16rem)] border-neutral-200 bg-[#FFFFFF] flex items-center">
+        <div className="container h-9 flex items-center text-sm text-neutral-600">
           <span className="block text-center w-full">© {new Date().getFullYear()} Dwiki Riyadi</span>
         </div>
       </footer>

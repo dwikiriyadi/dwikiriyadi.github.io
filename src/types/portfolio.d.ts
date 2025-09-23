@@ -23,5 +23,7 @@ export interface PortfolioItem {
   company?: string; // company or client name
   backgroundImages?: string[]; // decorative background images under /public/images
   link?: string; // deprecated: use links instead
-  category: PortfolioCategory;
+  // Categories: prefer `categories` (multi), keep `category` for backward compatibility
+  category?: PortfolioCategory;
+  categories?: PortfolioCategory[];
 }

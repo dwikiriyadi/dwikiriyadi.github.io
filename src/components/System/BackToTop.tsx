@@ -32,7 +32,7 @@ export default function BackToTop() {
       className={[
         "fixed right-4 bottom-4 md:right-6 md:bottom-6",
         "z-30 p-3 rounded-full border backdrop-blur",
-        "bg-neutral-900/80 border-neutral-800 text-white",
+        "bg-neutral-900/80 border-neutral-700 text-white",
         "shadow-lg transition-opacity",
         visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
       ].join(" ")}

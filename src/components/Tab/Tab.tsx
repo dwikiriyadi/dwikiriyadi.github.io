@@ -21,7 +21,7 @@ export default function Tab({ items, defaultKey, activeKey, onChange, theme = "d
   const isLight = theme === "light";
   return (
     <div>
-      <div role="tablist" aria-label="Tabs" className={`w-full flex flex-wrap items-center justify-center gap-2 border-b ${isLight ? "border-neutral-200" : "border-neutral-800"}`}>
+      <div role="tablist" aria-label="Tabs" className={`w-full flex flex-wrap items-center justify-center gap-2 border-b ${isLight ? "border-neutral-200" : "border-neutral-700"}`}>
         {items.map((it) => (
           <button
             key={it.key}
