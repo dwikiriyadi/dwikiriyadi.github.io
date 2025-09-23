@@ -74,9 +74,13 @@ export default function Contact() {
     }
   }
   return (
-    <section id="contact" className="relative overflow-hidden min-h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 md:scroll-mt-2 snap-start snap-always">
-      {/* Light diagonal background similar to Portfolio (reversed angle) */}
-      <div className="absolute inset-0 -z-10 bg-[#FFFFFF] [clip-path:polygon(0_0,100%_6vw,100%_100%,0%_calc(100%_-_6vw))]" aria-hidden></div>
+    <section id="contact" className="relative overflow-hidden md:h-[var(--app-height,100vh)] flex items-center py-16 scroll-mt-16 snap-start snap-always">
+      {/* Light background with only top diagonal cut (no bottom diagonal) to mirror Portfolio style */}
+      {/* Envelope-style background: V-shaped top like an envelope flap with layered color to avoid visible seam */}
+      <div
+        className="absolute inset-0 -z-10 [background:linear-gradient(135deg,rgba(33,33,33,0.08),transparent_42%),linear-gradient(225deg,rgba(33,33,33,0.08),transparent_42%),radial-gradient(900px_400px_at_50%_-10%,rgba(0,0,0,0.06),transparent_60%),#FFFFFF] [background-repeat:no-repeat] [clip-path:polygon(0_0,50%_6vw,100%_0,100%_100%,0%_100%)]"
+        aria-hidden
+      ></div>
       <div className="container w-full text-[#212121]">
         <h2 className="section-title text-center text-[#212121]">Contact</h2>
         <p className="text-center text-neutral-600 mt-1">Let&apos;s Connect & Collaborate</p>
@@ -106,11 +110,11 @@ export default function Contact() {
             <label className="block text-sm text-neutral-600 mb-1">Message</label>
             <textarea required name="message" rows={5} className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-[#212121] outline-none focus:border-neutral-500" />
           </div>
-          <div className="sm:col-span-2 flex items-center justify-between gap-3">
-            <button type="submit" disabled={cooldown} className={`px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>
-            <div className="flex items-center gap-3">
-              <span className="text-neutral-600 text-sm">Find me on</span>
-              <div className="flex flex-wrap gap-2 items-center">
+          <div className="sm:col-span-2 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <button type="submit" disabled={cooldown} className={`w-full sm:w-auto px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium ${cooldown ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}`}>{cooldown ? "Sending…" : "Send Message"}</button>
+            <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-3">
+              <span className="text-neutral-600 text-sm text-center sm:text-left">Find me on</span>
+              <div className="flex flex-wrap gap-2 items-center justify-center sm:justify-start">
                 {SOCIAL_LINKS.map((s) => (
                   <a key={s.name} href={s.href} target="_blank" aria-label={s.name} className="p-2 rounded-full border border-neutral-300 hover:bg-neutral-100 hover:border-neutral-400 transition-colors text-[#212121]">
                     <s.Icon size={18} />
