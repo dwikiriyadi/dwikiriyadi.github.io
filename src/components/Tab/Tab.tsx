@@ -29,8 +29,8 @@ export default function Tab({ items, defaultKey, activeKey, onChange, theme = "d
             aria-selected={active === it.key}
             className={`px-4 py-2 text-sm sm:text-base -mb-px border-b-2 transition-colors font-mono ${
               active === it.key
-                ? `border-[var(--color-primary)] ${isLight ? "text-[#212121]" : "text-white"}`
-                : `${isLight ? "text-[#9A9A9A] hover:text-[#212121]" : "text-[#9A9A9A] hover:text-neutral-200"} border-transparent`
+                ? `border-[var(--color-primary)] ${isLight ? "text-[#212121]" : "text-white"} font-semibold`
+                : `${isLight ? "text-[#525252] hover:text-[#212121]" : "text-[#9A9A9A] hover:text-neutral-200"} border-transparent`
             }`}
             onClick={() => setActive(it.key)}
           >

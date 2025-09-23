@@ -71,7 +71,7 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
             </div>
             <div className="pt-2 pb-1">
               <h3 className="font-semibold text-center text-[#212121]">{it.title}</h3>
-              <div className="mt-1 text-center text-sm text-neutral-500">
+              <div className="mt-1 text-center text-sm text-neutral-700">
                 {(it.categories && it.categories.length > 0 ? it.categories : (it.category ? [it.category] : []))
                   .join(" • ")}
               </div>
