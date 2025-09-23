@@ -22,12 +22,22 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
   }
 
   useEffect(() => {
+    // Ensure we start aligned to the left edge of the scroll area
+    const el = scrollerRef.current;
+    if (el) {
+      el.scrollTo({ left: 0, behavior: "auto" });
+    }
     // Run after layout and after potential image size calculations
     updateEdgeState();
-    requestAnimationFrame(updateEdgeState);
-    const timeoutId = window.setTimeout(updateEdgeState, 250);
+    requestAnimationFrame(() => {
+      if (el) el.scrollTo({ left: 0, behavior: "auto" });
+      updateEdgeState();
+    });
+    const timeoutId = window.setTimeout(() => {
+      if (el) el.scrollTo({ left: 0, behavior: "auto" });
+      updateEdgeState();
+    }, 250);
 
-    const el = scrollerRef.current;
     if (!el) return () => { window.clearTimeout(timeoutId); };
     const onScroll = () => updateEdgeState();
     el.addEventListener("scroll", onScroll, { passive: true });
@@ -58,15 +68,15 @@ function Carousel({ data }: { data: PortfolioItem[] }) {
         ref={scrollerRef}
         className="carousel overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-4 py-16"
         aria-label="Portfolio items carousel"
-        style={{ paddingInline: "var(--sidebar-width)" }}
+        style={{ paddingInline: "var(--sidebar-width)", scrollPaddingLeft: "var(--sidebar-width)" }}
       >
         {data.map((it) => (
           <Link
             key={it.id}
             href={`/portfolio/${it.id}`}
-            className="group w-full sm:w-[400px] lg:w-[480px] flex-none snap-center md:snap-start rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+            className="group px-20 w-full sm:w-[400px] lg:w-[480px] flex-none snap-start rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
-            <div className="aspect-[4/3] relative">
+            <div className="aspect-[3/4] relative">
               <Image src={it.image?.startsWith("/") ? it.image : `/${it.image}`} alt={it.title} fill sizes="(max-width:768px) 90vw, 480px" className="object-contain transition-transform duration-300 ease-out group-hover:scale-105" />
             </div>
             <div className="pt-2 pb-1">
