@@ -139,13 +139,23 @@ export default function Header() {
       </div>
 
       {!mobileOpen && (
-        <button
-          aria-label="Open menu"
-          className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-700"
-          onClick={() => setMobileOpen(true)}
-        >
-          <SidebarSimple size={22} weight="regular" />
-        </button>
+        <>
+          <button
+            aria-label="Open menu"
+            className="md:hidden fixed top-3 left-3 z-50 p-2 rounded bg-neutral-900/80 text-white border border-neutral-700"
+            onClick={() => setMobileOpen(true)}
+          >
+            <SidebarSimple size={22} weight="regular" />
+          </button>
+          <Link
+            href="/#home"
+            aria-label="Go to home"
+            className="md:hidden fixed top-3 right-3 z-50 p-2 inline-flex items-center gap-2"
+          >
+            <span className={(hash === "#portfolio" || hash === "#contact") ? "text-[#212121] text-sm font-semibold tracking-wide" : "text-white text-sm font-semibold tracking-wide"}>DWKRYD</span>
+            <Image src={(hash === "#portfolio" || hash === "#contact") ? "/logo_rounded_dark.svg" : "/logo_rounded.svg"} alt="Logo" width={22} height={22} />
+          </Link>
+        </>
       )}
 
       {/* Drawer / Sidebar */}

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 export default function PortfolioGallery({ images = [], backgroundImages = [] }: { images?: string[]; backgroundImages?: string[] }) {
   const [index, setIndex] = useState(0);
@@ -44,11 +45,21 @@ export default function PortfolioGallery({ images = [], backgroundImages = [] }:
             />
 
             {/* Controls */}
-            <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded hover:bg-black/60">
-              Prev
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={prev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60"
+            >
+              <CaretLeft size={18} weight="bold" aria-hidden />
             </button>
-            <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded hover:bg-black/60">
-              Next
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={next}
+              className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60"
+            >
+              <CaretRight size={18} weight="bold" aria-hidden />
             </button>
 
             {/* Dots */}
