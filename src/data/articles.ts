@@ -4,7 +4,7 @@ import type { ArticlesConfig } from "@/types/articles";
 // Tip: To create your own config from scratch, copy src/data/articles.template.ts to src/data/articles.ts
 // and follow the inline comments.
 export const ARTICLES: ArticlesConfig = {
-  provider: "medium",
+  provider: "static",
   mediumUsername: "wikinotes",
   // Used on GitHub Pages when remote RSS APIs fail/rate-limit
   fallbackItems: [
