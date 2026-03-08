@@ -67,12 +67,28 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
           throw new Error("Medium username is not configured. Set it in src/data/articles.ts or NEXT_PUBLIC_MEDIUM_USERNAME.");
         }
         const rssUrl = encodeURIComponent(rss);
-        const res = await fetch(
-          `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`,
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data: MediumRssResponse = await res.json();
-        setRaw(Array.isArray(data.items) ? data.items : []);
+        const rss2jsonRes = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+
+        if (rss2jsonRes.ok) {
+          const data: MediumRssResponse & { message?: string } = await rss2jsonRes.json();
+          if (data.status === "ok" && Array.isArray(data.items) && data.items.length > 0) {
+            setRaw(data.items);
+            return;
+          }
+          if (data.status === "error" && data.message) {
+            throw new Error(data.message);
+          }
+        }
+
+        const proxyRes = await fetch(`https://api.allorigins.win/raw?url=${rssUrl}`);
+        if (!proxyRes.ok) {
+          const status = rss2jsonRes.ok ? proxyRes.status : rss2jsonRes.status;
+          throw new Error(`HTTP ${status}`);
+        }
+
+        const xmlText = await proxyRes.text();
+        const parsed = parseMediumRssXml(xmlText);
+        setRaw(parsed);
       } catch (e) {
         setError(e instanceof Error ? e.message : "Failed to load articles");
       } finally {
