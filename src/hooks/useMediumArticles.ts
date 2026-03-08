@@ -21,6 +21,28 @@ interface UseMediumArticlesResult {
   error?: string;
 }
 
+function parseMediumRssXml(xmlText: string): MediumRssItem[] {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, "text/xml");
+  const itemNodes = Array.from(doc.querySelectorAll("item"));
+
+  return itemNodes.map((node) => {
+    const getText = (selector: string) => node.querySelector(selector)?.textContent?.trim() || "";
+
+    return {
+      title: getText("title"),
+      pubDate: getText("pubDate"),
+      link: getText("link"),
+      guid: getText("guid") || getText("link"),
+      author: getText("creator") || getText("author"),
+      thumbnail: "",
+      description: getText("description"),
+      content: getText("encoded") || getText("description"),
+      categories: Array.from(node.querySelectorAll("category")).map((c) => c.textContent?.trim() || "").filter(Boolean),
+    };
+  });
+}
+
 export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
   const [raw, setRaw] = useState<MediumRssItem[]>([]);
   const [page, setPage] = useState<number>(1);
