@@ -21,26 +21,18 @@ interface UseMediumArticlesResult {
   error?: string;
 }
 
-function parseMediumRssXml(xmlText: string): MediumRssItem[] {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlText, "text/xml");
-  const itemNodes = Array.from(doc.querySelectorAll("item"));
-
-  return itemNodes.map((node) => {
-    const getText = (selector: string) => node.querySelector(selector)?.textContent?.trim() || "";
-
-    return {
-      title: getText("title"),
-      pubDate: getText("pubDate"),
-      link: getText("link"),
-      guid: getText("guid") || getText("link"),
-      author: getText("creator") || getText("author"),
-      thumbnail: "",
-      description: getText("description"),
-      content: getText("encoded") || getText("description"),
-      categories: Array.from(node.querySelectorAll("category")).map((c) => c.textContent?.trim() || "").filter(Boolean),
-    };
-  });
+function toMediumItem(item: ArticleItem): MediumRssItem {
+  return {
+    title: item.title,
+    pubDate: item.pubDate,
+    link: item.link,
+    guid: item.id,
+    author: "",
+    thumbnail: "",
+    description: item.excerpt,
+    content: item.excerpt,
+    categories: [],
+  };
 }
 
 export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
@@ -57,6 +49,14 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
     async function fetchRss() {
       setLoading(true);
       setError(undefined);
+      const fallbackItems = ARTICLES.fallbackItems || [];
+
+      if (ARTICLES.provider === "static") {
+        setRaw(fallbackItems.map(toMediumItem));
+        setLoading(false);
+        return;
+      }
+
       try {
         const rss = ARTICLES.rssUrl
           ? ARTICLES.rssUrl
@@ -80,17 +80,14 @@ export function useMediumArticles(pageSize?: number): UseMediumArticlesResult {
           }
         }
 
-        const proxyRes = await fetch(`https://api.allorigins.win/raw?url=${rssUrl}`);
-        if (!proxyRes.ok) {
-          const status = rss2jsonRes.ok ? proxyRes.status : rss2jsonRes.status;
-          throw new Error(`HTTP ${status}`);
-        }
-
-        const xmlText = await proxyRes.text();
-        const parsed = parseMediumRssXml(xmlText);
-        setRaw(parsed);
+        throw new Error(rss2jsonRes.ok ? "Invalid Medium RSS response." : `HTTP ${rss2jsonRes.status}`);
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Failed to load articles");
+        if (fallbackItems.length > 0) {
+          setRaw(fallbackItems.map(toMediumItem));
+          setError(undefined);
+        } else {
+          setError(e instanceof Error ? e.message : "Failed to load articles");
+        }
       } finally {
         setLoading(false);
       }

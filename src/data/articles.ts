@@ -5,6 +5,15 @@ import type { ArticlesConfig } from "@/types/articles";
 // and follow the inline comments.
 export const ARTICLES: ArticlesConfig = {
   provider: "medium",
-  // If not provided, the code will fall back to NEXT_PUBLIC_MEDIUM_USERNAME env var
-  // mediumUsername: "wikinotes",
+  mediumUsername: "wikinotes",
+  // Used on GitHub Pages when remote RSS APIs fail/rate-limit
+  fallbackItems: [
+    {
+      id: "medium-profile",
+      title: "Browse all articles on Medium",
+      link: "https://medium.com/@wikinotes",
+      pubDate: "2026-01-01T00:00:00.000Z",
+      excerpt: "Open my Medium profile to read the latest posts while the feed provider is unavailable.",
+    },
+  ],
 };
